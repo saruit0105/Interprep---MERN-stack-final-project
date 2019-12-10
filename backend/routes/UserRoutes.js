@@ -44,6 +44,8 @@ router.post("/login", async (req, res, next) => {
       });
     }
     req.session.currentUser = user;
+    res.json(user);
+    console.log(user);
   } catch (err) {
     next(err);
   }
