@@ -7,7 +7,7 @@ const NavBar = () => {
   return (
     <div>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="home">
+        <Navbar.Brand href="/">
           <img
             alt=""
             src="./images/logo-ironhack.png"

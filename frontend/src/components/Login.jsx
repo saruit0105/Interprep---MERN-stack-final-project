@@ -8,11 +8,17 @@ class Login extends Component {
   updateInput = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+  goToProfile = () => {
+    const { history } = this.props;
+    console.log(this.props);
+    history.push("/content/profile");
+  };
 
   passLoginInfo = e => {
     e.preventDefault();
+    this.props.login(this.state.email, this.state.password);
     console.log(this);
-    this.props.login(this.state.username, this.state.password);
+    this.goToProfile();
   };
   render() {
     return (

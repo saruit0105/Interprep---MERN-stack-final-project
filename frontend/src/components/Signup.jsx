@@ -37,7 +37,6 @@ class Signup extends Component {
   };
 
   submitInput = async e => {
-    console.log(this.state);
     e.preventDefault();
     await axios.post(
       "http://localhost:5000/api/signup",

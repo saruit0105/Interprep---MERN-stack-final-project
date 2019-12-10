@@ -10,8 +10,6 @@ export default class Home extends Component {
     );
   };
   render() {
-    console.log(this.props.login);
-
     return (
       <div className="container-fluid">
         <div className="row no-gutter">
@@ -22,7 +20,11 @@ export default class Home extends Component {
                 <div className="row">
                   <div className="col-md-9 col-lg-8 mx-auto">
                     <h3 className="login-heading mb-4">Welcome back!</h3>
-                    <Login login={this.props.login} />
+                    <Login
+                      login={this.props.login}
+                      {...this.props}
+                      user={this.props.user}
+                    />
                     <div className="text-center">
                       New to The Forge ?
                       <button>
