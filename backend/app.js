@@ -13,7 +13,7 @@ const MongoStore = require("connect-mongo")(session);
 const cors = require("cors");
 
 mongoose
-  .connect("mongodb://localhost/client", { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
