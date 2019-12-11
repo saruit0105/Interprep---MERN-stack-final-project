@@ -1,28 +1,39 @@
 import Navbar from "react-bootstrap/Navbar";
 import { Nav } from "react-bootstrap";
+import React, { Component } from "react";
 
-import React from "react";
+class NavBar extends Component {
+  logOut = () => {};
 
-const NavBar = () => {
-  return (
-    <div>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="/">
-          <img
-            alt=""
-            src="./images/logo-ironhack.png"
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-          />
-          Bananafish
-        </Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link href="about">About</Nav.Link>
-        </Nav>
-      </Navbar>
-    </div>
-  );
-};
+  logInOrOut = () => {
+    if (this.props.user) {
+      return <button onClick={this.props.logout}>click to log out</button>;
+    } else return <button> click to log in</button>;
+  };
+
+  render() {
+    console.log(this.props);
+    return (
+      <div>
+        <Navbar bg="dark" variant="dark">
+          <Navbar.Brand href="/">
+            <img
+              alt=""
+              src="./images/logo-ironhack.png"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />
+            Bananafish
+          </Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link href="/about">About</Nav.Link>
+            {this.logInOrOut()}
+          </Nav>
+        </Navbar>
+      </div>
+    );
+  }
+}
 
 export default NavBar;

@@ -32,6 +32,15 @@ export default class App extends Component {
     this.fetchAllData();
   }
 
+  logout = async () => {
+    const response = await axios.post("http://localhost:5000/api/logout", {
+      withCredentials: true
+    });
+    let user = await response.data;
+    this.setState({ currentlyLoggedInUser: user }, () => {});
+    console.log(this.state);
+  };
+
   login = async (email, password) => {
     const response = await axios.post(
       "http://localhost:5000/api/login",
@@ -45,7 +54,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar user={this.state.currentlyLoggedInUser} logout={this.logout} />
         <Switch>
           <Route path="/about" component={About} />
           <Route
