@@ -10,7 +10,6 @@ class Login extends Component {
   };
   goToProfile = () => {
     const { history } = this.props;
-    console.log(this.props);
     history.push("/content/profile");
   };
 

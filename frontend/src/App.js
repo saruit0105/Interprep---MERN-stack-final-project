@@ -6,8 +6,11 @@ import axios from "axios";
 import { About, Home, NavBar, Signup, Profile } from "./components";
 
 export default class App extends Component {
+  // static contextType = UserContext
+  //  this.context.isLoggedIn
   state = {
-    currentlyLoggedIn: null
+    currentlyLoggedIn: null,
+    isSigningUp: false
   };
 
   fetchAllData = async () => {
@@ -29,43 +32,14 @@ export default class App extends Component {
     this.fetchAllData();
   }
 
-  // login = async (email, password) => {
-  //   console.log(email);
-  //   console.log(password);
-  //   const response = await axios.post(
-  //     "http://localhost:5000/api/login",
-  //     { email: email, password: password },
-  //     { withCredentials: true }
-  //   );
-  //   console.log("asd");
-  //   let user = response.data;
-  //   console.log(user);
-  //   this.setState({ currentlyLoggedInUser: user }, () => {
-  //     console.log(this.state.currentlyLoggedIn);
-  //   });
-  // };
-
-  login = (email, password) => {
-    const response = axios
-      .post(
-        "http://localhost:5000/api/login",
-        { email: email, password: password },
-        { withCredentials: true }
-      )
-      .then(data => {
-        console.log(data);
-        this.setState(
-          {
-            currentlyLoggedInUser: data
-          },
-          () => {
-            console.log(data);
-          }
-        );
-      })
-      .catch(err => {
-        throw err;
-      });
+  login = async (email, password) => {
+    const response = await axios.post(
+      "http://localhost:5000/api/login",
+      { email: email, password: password },
+      { withCredentials: true }
+    );
+    let user = await response.data;
+    this.setState({ currentlyLoggedInUser: user }, () => {});
   };
 
   render() {
@@ -86,7 +60,12 @@ export default class App extends Component {
             )}
           />
           <Route path="/content/signup" component={Signup} />
-          <Route path="/content/Profile" component={Profile} />
+          <Route
+            path="/content/Profile"
+            render={props => (
+              <Profile {...props} user={this.state.currentlyLoggedInUser} />
+            )}
+          />
         </Switch>
       </div>
     );

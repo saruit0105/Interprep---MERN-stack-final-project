@@ -2,14 +2,36 @@ import React, { Component } from "react";
 import "./home.css";
 import { Login } from ".";
 import { Link } from "react-router-dom";
+import { Signup } from ".";
 
 export default class Home extends Component {
+  state = {
+    isSigningUp: false,
+    activeForm: "login"
+  };
   notify = () => {
     window.alert(
       "This feature isn't working right now, stay posted for future updates!"
     );
   };
+  // toggleSignUp = () => {
+  //   this.setState({ activeForm: 'signUp' });
+  // };
+
+  // conditionalSignup = () => {
+  //   if (this.state.isSigningUp) {
+  //     return <Signup />;
+  //   } else {
+  //     return (
+  //     <div>
+
+  //     </div>
+  //     );
+  //   }
+  // };
+
   render() {
+    const { isSigningUp, activeForm } = this.state;
     return (
       <div className="container-fluid">
         <div className="row no-gutter">
@@ -25,10 +47,12 @@ export default class Home extends Component {
                       {...this.props}
                       user={this.props.user}
                     />
+
                     <div className="text-center">
                       New to The Forge ?
-                      <button>
+                      <button onClick={this.toggleSignUp}>
                         <Link to={"/content/signup"}>Signup</Link>
+                        {/* Sign up */}
                       </button>
                     </div>
                   </div>
@@ -41,3 +65,14 @@ export default class Home extends Component {
     );
   }
 }
+
+// const FormComponent = {
+//   signUp: SignUpForm,
+//   login: LoginForm,
+// }[activeForm]
+// return (
+//   <div>
+//     <FormComponent />
+//     <submit></submit>
+//   </div>
+// )
