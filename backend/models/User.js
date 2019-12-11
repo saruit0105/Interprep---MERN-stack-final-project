@@ -35,6 +35,8 @@ const userSchema = new Schema({
   course: { type: String, enum: ["WebDev", "UX/UI", "Data Analytics"] },
   image: String
 });
+linkedin: String;
+github: String;
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
