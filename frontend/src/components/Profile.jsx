@@ -10,7 +10,7 @@ class Profile extends Component {
             <div className="profile-sidebar">
               <div className="profile-userpic">
                 <img
-                  src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png"
                   className="img-responsive"
                   alt=""
                 />

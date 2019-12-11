@@ -8,7 +8,7 @@ body {
 
 .profile-sidebar {
   padding: 20px 0 10px 0;
-  background: #fff;
+  background: white;
 }
 
 .profile-userpic img {
@@ -19,6 +19,7 @@ body {
   -webkit-border-radius: 50% !important;
   -moz-border-radius: 50% !important;
   border-radius: 50% !important;
+  margin-left: 60px;
 }
 
 .profile-usertitle {
@@ -99,6 +100,6 @@ body {
 
 .profile-content {
   padding: 20px;
-  background: #fff;
+
   min-height: 460px;
 }

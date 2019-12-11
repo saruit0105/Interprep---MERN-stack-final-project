@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./home.css";
 
 class Signup extends Component {
   state = {
@@ -64,44 +65,74 @@ class Signup extends Component {
   render() {
     return (
       <div>
-        <h3> Sign up </h3>
-        <form onSubmit={this.submitInput}>
-          <p>Email</p>
-          <input
-            type="text"
-            onChange={this.updateInput}
-            name="newEmail"
-            value={this.state.newEmail}
-          />
-          <p>Name</p>
-          <input
-            type="text"
-            onChange={this.updateInput}
-            name="newName"
-            value={this.state.newName}
-          />
+        <div className="container-fluid">
+          <div className="row no-gutter">
+            <div className="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+            <div className="col-md-8 col-lg-6">
+              <div className="login d-flex align-items-center py-5">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-9 col-lg-8 mx-auto">
+                      <h3 className="login-heading mb-4"> Sign up </h3>
+                      <form onSubmit={this.submitInput}>
+                        <div className="form-label-group">
+                          <p>Email</p>
+                          <input
+                            type="text"
+                            className="form-control"
+                            onChange={this.updateInput}
+                            name="newEmail"
+                            value={this.state.newEmail}
+                          />
+                          <p>Name</p>
+                          <input
+                            type="text"
+                            className="form-control"
+                            onChange={this.updateInput}
+                            name="newName"
+                            value={this.state.newName}
+                          />
 
-          <p>Password</p>
-          <input
-            type="text"
-            onChange={this.updateInput}
-            name="newPassword"
-            value={this.state.newPassword}
-          />
-          <p>Campus</p>
-          <select required={true} name="newCampus" onChange={this.updateInput}>
-            <option>Please Select a Campus</option>
-            {this.showOptions(this.campus)}
-            <option></option>
-          </select>
+                          <p>Password</p>
+                          <input
+                            type="text"
+                            className="form-control"
+                            onChange={this.updateInput}
+                            name="newPassword"
+                            value={this.state.newPassword}
+                          />
+                          <p>Campus</p>
+                          <select
+                            required={true}
+                            className="form-control"
+                            name="newCampus"
+                            onChange={this.updateInput}
+                          >
+                            <option>Please Select a Campus</option>
+                            {this.showOptions(this.campus)}
+                            <option></option>
+                          </select>
 
-          <p>Course</p>
-          <select required={true} name="newCourse" onChange={this.updateInput}>
-            <option>Please Select A Course</option>
-            {this.showOptions(this.courses)}
-          </select>
-          <button> Submit</button>
-        </form>
+                          <p>Course</p>
+                          <select
+                            required={true}
+                            className="form-control"
+                            name="newCourse"
+                            onChange={this.updateInput}
+                          >
+                            <option>Please Select A Course</option>
+                            {this.showOptions(this.courses)}
+                          </select>
+                          <button> Submit</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
