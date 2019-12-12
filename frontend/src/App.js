@@ -3,7 +3,15 @@ import { Route, Switch } from "react-router-dom";
 import React, { Component } from "react";
 import "./images/logo-ironhack.png";
 import axios from "axios";
-import { About, Home, NavBar, Signup, Profile } from "./components";
+import {
+  About,
+  Home,
+  NavBar,
+  Signup,
+  Profile,
+  Landing,
+  Questions
+} from "./components";
 
 export default class App extends Component {
   // static contextType = UserContext
@@ -66,6 +74,20 @@ export default class App extends Component {
                 user={this.state.currentlyLoggedInUser}
                 login={this.login}
               />
+            )}
+          />
+          <Route
+            exact
+            path="/landing"
+            render={props => (
+              <Landing {...props} user={this.state.currentlyLoggedInUser} />
+            )}
+          />
+          <Route
+            exact
+            path="/questions"
+            render={props => (
+              <Questions {...props} user={this.state.currentlyLoggedInUser} />
             )}
           />
           <Route path="/content/signup" component={Signup} />
