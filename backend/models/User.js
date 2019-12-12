@@ -33,10 +33,13 @@ const userSchema = new Schema({
     ]
   },
   course: { type: String, enum: ["WebDev", "UX/UI", "Data Analytics"] },
-  image: String
-});
-linkedin: String;
-github: String;
+  image: String,
+  linkedin: String,
+  github: String,
+  points: String,
+  followers: Array
+
+}),
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
