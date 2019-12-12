@@ -68,12 +68,7 @@ class Profile extends Component {
         </div>
 
         <center>
-          <strong>
-            Powered by{" "}
-            <a href="http://j.mp/metronictheme" target="_blank">
-              KeenThemes
-            </a>
-          </strong>
+          <strong>placeholder</strong>
         </center>
         <br />
         <br />

@@ -3,8 +3,6 @@ import { Nav } from "react-bootstrap";
 import React, { Component } from "react";
 
 class NavBar extends Component {
-  logOut = () => {};
-
   logInOrOut = () => {
     if (this.props.user) {
       return <button onClick={this.props.logout}>click to log out</button>;

@@ -16,7 +16,7 @@ class Login extends Component {
   passLoginInfo = e => {
     e.preventDefault();
     this.props.login(this.state.email, this.state.password);
-    console.log(this);
+
     this.goToProfile();
   };
   render() {
