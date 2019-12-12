@@ -85,7 +85,7 @@ export default class App extends Component {
           />
           <Route
             exact
-            path="/questions"
+            path="/quiz/javascript"
             render={props => (
               <Questions {...props} user={this.state.currentlyLoggedInUser} />
             )}
