@@ -76,32 +76,80 @@ class Signup extends Component {
                       <h3 className="login-heading mb-4"> Sign up </h3>
                       <form onSubmit={this.submitInput}>
                         <div className="form-label-group">
-                          <p>Email</p>
-                          <input
+                          {/* <p>Email</p> */}
+                          
+                          {/* <input
                             type="text"
                             className="form-control"
                             onChange={this.updateInput}
                             name="newEmail"
                             value={this.state.newEmail}
-                          />
-                          <p>Name</p>
+                            
+                          /> */}
+
+                            <div className="form-label-group">
+                             <input
+                             type="text"
+                              name="email"
+                             id="inputEmail"
+                            onChange={this.updateInput}
+                            value={this.state.email}
+                            className="form-control"
+                             placeholder="email"
+                             required
+                               autoFocus
+                               />
+                         <label htmlFor="inputEmail">Email address</label>
+          </div>
+                          
+                          {/* <p>Name</p>
                           <input
                             type="text"
                             className="form-control"
                             onChange={this.updateInput}
                             name="newName"
                             value={this.state.newName}
-                          />
+                          /> */}
 
-                          <p>Password</p>
+<div className="form-label-group">
+                             <input
+                             type="text"
+                              name="newName"
+                             id="inputName"
+                            onChange={this.updateInput}
+                            value={this.state.newName}
+                            className="form-control"
+                             placeholder="name"
+                             required
+                               autoFocus
+                               />
+                         <label htmlFor="inputName">Name</label>
+          </div>
+
+                          {/* <p>Password</p>
                           <input
                             type="text"
                             className="form-control"
                             onChange={this.updateInput}
                             name="newPassword"
                             value={this.state.newPassword}
-                          />
-                          <p>Campus</p>
+                          /> */}
+
+<div className="form-label-group">
+                             <input
+                             type="text"
+                              name="newPassword"
+                             id="inputPassword"
+                            onChange={this.updateInput}
+                            value={this.state.newPassword}
+                            className="form-control"
+                             placeholder="password"
+                             required
+                               autoFocus
+                               />
+                         <label htmlFor="inputPassword">Password</label>
+          </div>
+                          {/* <p>Campus</p>
                           <select
                             required={true}
                             className="form-control"
@@ -111,9 +159,29 @@ class Signup extends Component {
                             <option>Please Select a Campus</option>
                             {this.showOptions(this.campus)}
                             <option></option>
-                          </select>
+                          </select> */}
 
-                          <p>Course</p>
+<div className="form-label-group">
+                             <select
+                             
+                              name="newCampus"
+                             id="inputCampus"
+                            onChange={this.updateInput}
+                            value={this.state.email}
+                            className="form-control"
+                             
+                             required
+                               autoFocus
+                               >
+                         <option>Please Select a Campus</option>
+                            {this.showOptions(this.campus)}
+                            <option></option>
+                          
+                         </select>
+                        {/* <label htmlFor="inputCampus">Campus</label> */}
+                          </div>
+                          <div className="form-label-group">
+                          {/* <p>Course</p> */}
                           <select
                             required={true}
                             className="form-control"
@@ -123,7 +191,8 @@ class Signup extends Component {
                             <option>Please Select A Course</option>
                             {this.showOptions(this.courses)}
                           </select>
-                          <button> Submit</button>
+                          </div>
+                          <button class="btn btn-lg btn-primary btn-block outline-primary" type="submit">Sign up</button>
                         </div>
                       </form>
                     </div>
