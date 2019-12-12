@@ -3,6 +3,8 @@ import { Route, Switch } from "react-router-dom";
 import React, { Component } from "react";
 import "./images/logo-ironhack.png";
 import axios from "axios";
+import { baseURL } from "./config";
+
 import {
   About,
   Home,
@@ -17,6 +19,7 @@ import ShortAnswers from "./components/ShortAnswers";
 import ReactQuestions from "./components/ReactQuestions";
 
 
+console.log(baseURL);
 export default class App extends Component {
   // static contextType = UserContext
   //  this.context.isLoggedIn
@@ -27,10 +30,9 @@ export default class App extends Component {
 
   fetchAllData = async () => {
     try {
-      let currentUser = await axios.get(
-        "http://localhost:5000/api/get-user-info",
-        { withCredentials: true }
-      );
+      let currentUser = await axios.get(`${baseURL}/api/get-user-info`, {
+        withCredentials: true
+      });
       this.setState({
         currentlyLoggedInUser: currentUser.data,
         ready: true
@@ -45,7 +47,7 @@ export default class App extends Component {
   }
 
   logout = async () => {
-    const response = await axios.post("http://localhost:5000/api/logout", {
+    const response = await axios.post(`${baseURL}/api/logout`, {
       withCredentials: true
     });
     let user = await response.data;
@@ -54,11 +56,13 @@ export default class App extends Component {
   };
 
   login = async (email, password) => {
+    console.log(email, password);
     const response = await axios.post(
-      "http://localhost:5000/api/login",
+      `${baseURL}/api/login`,
       { email: email, password: password },
       { withCredentials: true }
     );
+    console.log(response);
     let user = await response.data;
     this.setState({ currentlyLoggedInUser: user }, () => {});
   };
