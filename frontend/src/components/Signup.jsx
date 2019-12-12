@@ -137,7 +137,7 @@ class Signup extends Component {
 
                           <div className="form-label-group">
                             <input
-                              type="text"
+                              type="password"
                               name="newPassword"
                               id="inputPassword"
                               onChange={this.updateInput}

@@ -40,7 +40,7 @@ class Login extends Component {
 
           <div className="form-label-group">
             <input
-              type="text"
+              type="password"
               name="password"
               id="inputPassword"
               onChange={this.updateInput}
