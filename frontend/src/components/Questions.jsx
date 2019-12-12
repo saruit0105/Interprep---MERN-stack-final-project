@@ -28,7 +28,23 @@ class Questions extends Component {
       Math.floor(Math.random() * this.state.questions.length)
     ];
     console.log(randomQ);
-    return <div>{randomQ ? randomQ.question : ""}</div>;
+    return (
+      <div>
+        <strong>{randomQ ? randomQ.question : ""}</strong>
+        <div className="questionBox">
+          <div>
+            {randomQ &&
+              randomQ.answers.map(eachAnswers => (
+                <span onClick={this.pickedToggle}>
+                  <button></button>
+                  {eachAnswers}
+                </span>
+              ))}
+          </div>
+          <hr></hr>
+        </div>
+      </div>
+    );
   };
 
   pickedToggle = () => {
