@@ -93,7 +93,7 @@ class Signup extends Component {
                               name="email"
                               id="inputEmail"
                               onChange={this.updateInput}
-                              value={this.state.email}
+                              value={this.state.newEmail}
                               className="form-control"
                               placeholder="email"
                               required

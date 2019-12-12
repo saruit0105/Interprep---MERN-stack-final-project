@@ -30,7 +30,7 @@ class Questions extends Component {
   render() {
     return (
       <div>
-        <p> Quiz 1 out of 5</p>
+        <p> Question 1 out of 5</p>
         {this.choicePicked()}
         <strong>why did bill gates invent javascript????</strong>
         <div className="questionBox">
