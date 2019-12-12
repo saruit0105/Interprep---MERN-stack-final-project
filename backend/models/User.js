@@ -38,8 +38,7 @@ const userSchema = new Schema({
   github: String,
   points: String,
   followers: Array
-
-}),
+});
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;

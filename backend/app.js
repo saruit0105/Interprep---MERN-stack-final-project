@@ -46,6 +46,8 @@ app.use(
   })
 );
 
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
 app.use(
   cors({
     credentials: true,
@@ -81,5 +83,9 @@ app.use("/api", UserRoutes);
 
 const index = require("./routes/index");
 app.use("/api", index);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+});
 
 module.exports = app;
