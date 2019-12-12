@@ -10,8 +10,12 @@ import {
   Signup,
   Profile,
   Landing,
-  Questions
+  Questions,
+  
 } from "./components";
+import ShortAnswers from "./components/ShortAnswers";
+import ReactQuestions from "./components/ReactQuestions";
+
 
 export default class App extends Component {
   // static contextType = UserContext
@@ -90,6 +94,21 @@ export default class App extends Component {
               <Questions {...props} user={this.state.currentlyLoggedInUser} />
             )}
           />
+
+           <Route
+            exact
+            path="/quiz/shortanswers"
+            render={props => (
+              <ShortAnswers {...props} user={this.state.currentlyLoggedInUser} />
+            )}
+          />  
+          <Route
+            exact
+            path="/quiz/react"
+            render={props => (
+              <ReactQuestions {...props} user={this.state.currentlyLoggedInUser} />
+            )}
+          /> 
           <Route path="/content/signup" component={Signup} />
           <Route
             path="/content/Profile"

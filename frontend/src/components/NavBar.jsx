@@ -26,6 +26,7 @@ class NavBar extends Component {
           </Navbar.Brand>
           <Nav className="mr-auto">
             <Nav.Link href="/about">About</Nav.Link>
+            <Nav.Link href="/landing">Quiz</Nav.Link>
             {this.logInOrOut()}
           </Nav>
         </Navbar>

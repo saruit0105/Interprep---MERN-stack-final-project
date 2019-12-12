@@ -155,21 +155,21 @@ class Profile extends Component {
               <div class="col-md-4">
                 <div class="profile-work">
                   <p>WORK LINK</p>
-                  <a href="">Website Link</a>
+                  <a href="zxv">Website Link</a>
                   <br />
-                  <a href="">Bootsnipp Profile</a>
+                  <a href="asdf">Bootsnipp Profile</a>
                   <br />
-                  <a href="">Bootply Profile</a>
+                  <a href="sdf">Bootply Profile</a>
                   <p>SKILLS</p>
-                  <a href="">Web Designer</a>
+                  <a href="sdf">Web Designer</a>
                   <br />
-                  <a href="">Web Developer</a>
+                  <a href="asdf">Web Developer</a>
                   <br />
-                  <a href="">WordPress</a>
+                  <a href="dfa">WordPress</a>
                   <br />
-                  <a href="">WooCommerce</a>
+                  <a href="sdf">WooCommerce</a>
                   <br />
-                  <a href="">PHP, .Net</a>
+                  <a href="sdf">PHP, .Net</a>
                   <br />
                 </div>
               </div>
