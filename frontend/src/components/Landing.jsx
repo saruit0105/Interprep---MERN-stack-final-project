@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 const links = [
-  { label: "Short Answers", path: "/quiz/shortanswers" },
+  { label: "Short Answers", path: "/quiz/shortanswers",catagory: "shortanswers" },
 
   {
     label: "JavaScript",
