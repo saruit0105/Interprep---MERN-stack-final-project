@@ -78,6 +78,7 @@ router.post("/upload", async (req, res, next) => {
 
 //login info
 router.get("/get-user-info", async (req, res, _) => {
+  console.log("hmmm", req.session);
   if (req.session.currentUser) {
     res.json(req.session.currentUser);
   } else {
