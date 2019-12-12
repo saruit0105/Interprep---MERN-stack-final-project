@@ -1,8 +1,34 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { baseURL } from "../config";
 
 class Questions extends Component {
   state = {
-    picked: false
+    picked: false,
+    questions: []
+  };
+
+  fetchQuestions = async () => {
+    try {
+      let questions = await axios.get(`${baseURL}/api/getQuestions`, {
+        withCredentials: true
+      });
+      this.setState({ questions: questions.data });
+      console.log(this.state);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  componentDidMount() {
+    this.fetchQuestions();
+  }
+
+  pickQuestion = () => {
+    let randomQ = this.state.questions[
+      Math.floor(Math.random() * this.state.questions.length)
+    ];
+    console.log(randomQ);
+    return <div>{randomQ ? randomQ.question : ""}</div>;
   };
 
   pickedToggle = () => {
@@ -32,19 +58,19 @@ class Questions extends Component {
       <div>
         <p> Question 1 out of 5</p>
         {this.choicePicked()}
-        <strong>why did bill gates invent javascript????</strong>
+        <strong>{this.pickQuestion()}</strong>
         <div className="questionBox">
           <div>
-            <span>
+            <span onClick={this.pickedToggle}>
               <button>A</button>
-              he wanted to
+              answer PH
             </span>
           </div>
           <hr></hr>
           <div>
             <span onClick={this.pickedToggle}>
               <button>B</button>
-              he didn't
+              another answer PH
             </span>
           </div>
           <hr></hr>
