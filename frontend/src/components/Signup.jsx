@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./home.css";
+import { baseURL } from "../config";
 
 class Signup extends Component {
   state = {
@@ -40,7 +41,7 @@ class Signup extends Component {
   submitInput = async e => {
     e.preventDefault();
     await axios.post(
-      "http://localhost:5000/api/signup",
+      `${baseURL}/api/signup`,
       {
         newEmail: this.state.newEmail,
         newName: this.state.newName,
@@ -84,22 +85,21 @@ class Signup extends Component {
                             onChange={this.updateInput}
                             name="newEmail"
                             value={this.state.newEmail}
-                            
                           /> */}
 
                           <div className="form-label-group">
                             <input
                               type="text"
-                              name="email"
-                              id="inputEmail"
-                              onChange={this.updateInput}
-                              value={this.state.email}
                               className="form-control"
-                              placeholder="email"
+                              id="newEmail"
+                              onChange={this.updateInput}
+                              name="newEmail"
+                              value={this.state.newEmail}
+                              placeholder="Email Address"
                               required
                               autoFocus
                             />
-                            <label htmlFor="inputEmail">Email address</label>
+                            <label htmlFor="newEmail">Email address</label>
                           </div>
 
                           {/* <p>Name</p>
