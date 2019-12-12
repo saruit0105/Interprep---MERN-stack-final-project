@@ -90,13 +90,6 @@ class Signup extends Component {
                           <div className="form-label-group">
                             <input
                               type="text"
-<<<<<<< HEAD
-                              name="email"
-                              id="inputEmail"
-                              onChange={this.updateInput}
-                              value={this.state.newEmail}
-=======
->>>>>>> 49150909fdcd2900cfe7de292c09da2975fdfb1d
                               className="form-control"
                               id="newEmail"
                               onChange={this.updateInput}
@@ -144,7 +137,7 @@ class Signup extends Component {
 
                           <div className="form-label-group">
                             <input
-                              type="text"
+                              type="password"
                               name="newPassword"
                               id="inputPassword"
                               onChange={this.updateInput}
