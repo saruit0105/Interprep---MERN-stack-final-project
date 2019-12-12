@@ -149,7 +149,7 @@ class Signup extends Component {
                             />
                             <label htmlFor="inputPassword">Password</label>
                           </div>
-                          {/* <p>Campus</p>
+                          <p>Campus</p>
                           <select
                             required={true}
                             className="form-control"
@@ -159,36 +159,52 @@ class Signup extends Component {
                             <option>Please Select a Campus</option>
                             {this.showOptions(this.campus)}
                             <option></option>
-                          </select> */}
+                          </select>
 
-                          <div className="form-label-group">
-                            <select
+                          {/* <div className="form-label-group">
+                             <select
+                             
                               name="newCampus"
-                              id="inputCampus"
-                              onChange={this.updateInput}
-                              value={this.state.email}
-                              className="form-control"
-                              required
-                              autoFocus
-                            >
-                              <option>Please Select a Campus</option>
-                              {this.showOptions(this.campus)}
-                              <option></option>
-                            </select>
-                            {/* <label htmlFor="inputCampus">Campus</label> */}
-                          </div>
-                          <div className="form-label-group">
-                            {/* <p>Course</p> */}
-                            <select
-                              required={true}
-                              className="form-control"
-                              name="newCourse"
-                              onChange={this.updateInput}
-                            >
-                              <option>Please Select A Course</option>
-                              {this.showOptions(this.courses)}
-                            </select>
-                          </div>
+                             id="inputCampus"
+                            onChange={this.updateInput}
+                            value={this.state.email}
+                            className="form-control"
+                             
+                             required
+                               autoFocus
+                               >
+                         <option>Please Select a Campus</option>
+                            {this.showOptions(this.campus)}
+                            <option></option>
+                          
+                         </select>
+                        {/* <label htmlFor="inputCampus">Campus</label> 
+                          </div> */}
+
+                          <p>Course</p>
+                          <select
+                            required={true}
+                            className="form-control"
+                            name="newCourse"
+                            onChange={this.updateInput}
+                          >
+                            <option>Please Select a Course</option>
+                            {this.showOptions(this.courses)}
+                            <option></option>
+                          </select>
+
+                          {/* <div className="form-label-group">
+                           <p>Course</p> 
+                          <select
+                            required={true}
+                            className="form-control"
+                            name="newCourse"
+                            onChange={this.updateInput}
+                          >
+                            <option>Please Select A Course</option>
+                            {this.showOptions(this.courses)}
+                          </select>
+                          </div> */}
                           <button
                             class="btn btn-lg btn-primary btn-block outline-primary"
                             type="submit"
