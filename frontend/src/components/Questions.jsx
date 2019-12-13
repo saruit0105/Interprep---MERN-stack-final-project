@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { baseURL } from "../config";
 import { QuestionBox } from ".";
+import "./Questions.css";
 
 class Questions extends Component {
   state = {
@@ -9,7 +10,8 @@ class Questions extends Component {
     picked: false,
     isCorrect: false,
     randomQuestion: null,
-    counter: 1
+    counter: 1,
+    howManyCorrect: 0
   };
 
   fetchQuestions = async () => {
@@ -39,7 +41,9 @@ class Questions extends Component {
 
   countCheck = () => {
     this.state.counter > 4
-      ? alert("Good job on finishing the quiz")
+      ? alert(
+          `Good job on finishing the quiz, you got ${this.state.howManyCorrect}/5 answers correct`
+        )
       : console.log("youre not done yet");
   };
 
@@ -55,28 +59,31 @@ class Questions extends Component {
     console.log(solution);
     console.log(eachAnswers);
     let questionCheck = false;
+    let correctCount = this.state.howManyCorrect;
     eachAnswers === solution ? (questionCheck = true) : (questionCheck = false);
+    if (eachAnswers === solution) {
+      correctCount++;
+      console.log(correctCount);
+    }
     this.setState({
       picked: !this.state.picked,
-
-      isCorrect: questionCheck
+      isCorrect: questionCheck,
+      howManyCorrect: correctCount
     });
-    console.log(this.state);
   };
 
   choicePicked = () => {
     if (this.state.picked === true && this.state.isCorrect === true) {
       return (
         <div>
-          <p>wow you are right! </p>
+          <p style={{ color: "green" }}>wow you are right! </p>
         </div>
       );
     } else if (this.state.picked === true && this.state.isCorrect === false) {
       return (
         <div>
-          <p>
-            {" "}
-            Sorry, that's the wrong answer, the correct answer is :
+          <p style={{ color: "red" }}>
+            Sorry, that's the wrong answer, the correct answer is :{""}
             {this.state.randomQuestion.solution}
           </p>
         </div>
@@ -92,7 +99,7 @@ class Questions extends Component {
 
   render() {
     return (
-      <div>
+      <div className="questionPage">
         <p> Question {this.state.counter} out of 5</p>
         <button onClick={() => this.nextQuestion()}> Go Next </button>
         <QuestionBox
