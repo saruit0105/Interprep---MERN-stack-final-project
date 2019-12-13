@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { baseURL } from "../config";
+import { QuestionBox } from ".";
 
 class Questions extends Component {
   state = {
-    picked: false,
-    questions: []
+    questions: null,
+
+    randomQuestion: null
   };
 
   fetchQuestions = async () => {
@@ -19,63 +21,30 @@ class Questions extends Component {
       console.log(err);
     }
   };
-  componentDidMount() {
-    this.fetchQuestions();
-  }
+  componentDidMount = async () => {
+    await this.fetchQuestions();
+    await this.pickQuestion();
+  };
+
+  nextQuestion = () => {
+    console.log("Next one");
+    this.setState({
+      next: true
+    });
+  };
 
   pickQuestion = () => {
     let randomQ = this.state.questions[
       Math.floor(Math.random() * this.state.questions.length)
     ];
-
-    console.log(randomQ);
-    return (
-      <div>
-        <strong>{randomQ ? randomQ.question : ""}</strong>
-        {randomQ &&
-          randomQ.answers.map(eachAnswers => (
-            <div className="questionBox">
-              <div key={randomQ.answers}>
-                <span onClick={this.pickedToggle}>
-                  <button></button>
-                  {eachAnswers}
-                </span>
-              </div>
-              <hr></hr>
-            </div>
-          ))}
-      </div>
-    );
-  };
-
-  pickedToggle = () => {
-    this.setState({ picked: !this.state.picked });
-    console.log(this.state);
-  };
-  choicePicked = () => {
-    if (this.state.picked === true) {
-      return (
-        <div>
-          <p>wow you are right! </p>
-          <button> Next Question</button>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <p> Choose the correct answer below</p>
-          <button> Next Question</button>
-        </div>
-      );
-    }
+    this.setState({ randomQuestion: randomQ });
   };
 
   render() {
     return (
       <div>
         <p> Question 1 out of 5</p>
-        {this.choicePicked()}
-        <strong>{this.pickQuestion()}</strong>
+        <QuestionBox randomQuestion={this.state.randomQuestion} />
       </div>
     );
   }

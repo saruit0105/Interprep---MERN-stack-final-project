@@ -12,7 +12,8 @@ import {
   Signup,
   Profile,
   Landing,
-  Questions
+  Questions,
+  QuestionBox
 } from "./components";
 import ShortAnswers from "./components/ShortAnswers";
 import ReactQuestions from "./components/ReactQuestions";
@@ -93,6 +94,13 @@ export default class App extends Component {
             path="/quiz/javascript"
             render={props => (
               <Questions {...props} user={this.state.currentlyLoggedInUser} />
+            )}
+          />
+          <Route
+            exact
+            path="/quiz/randomQ"
+            render={props => (
+              <QuestionBox {...props} user={this.state.currentlyLoggedInUser} />
             )}
           />
 
