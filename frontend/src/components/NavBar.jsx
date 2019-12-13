@@ -10,7 +10,6 @@ class NavBar extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <Navbar bg="dark" variant="dark">

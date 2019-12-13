@@ -27,22 +27,23 @@ class Questions extends Component {
     let randomQ = this.state.questions[
       Math.floor(Math.random() * this.state.questions.length)
     ];
+
     console.log(randomQ);
     return (
       <div>
         <strong>{randomQ ? randomQ.question : ""}</strong>
-        <div className="questionBox">
-          <div>
-            {randomQ &&
-              randomQ.answers.map(eachAnswers => (
+        {randomQ &&
+          randomQ.answers.map(eachAnswers => (
+            <div className="questionBox">
+              <div key={randomQ.answers}>
                 <span onClick={this.pickedToggle}>
                   <button></button>
                   {eachAnswers}
                 </span>
-              ))}
-          </div>
-          <hr></hr>
-        </div>
+              </div>
+              <hr></hr>
+            </div>
+          ))}
       </div>
     );
   };
@@ -75,22 +76,6 @@ class Questions extends Component {
         <p> Question 1 out of 5</p>
         {this.choicePicked()}
         <strong>{this.pickQuestion()}</strong>
-        <div className="questionBox">
-          <div>
-            <span onClick={this.pickedToggle}>
-              <button>A</button>
-              answer PH
-            </span>
-          </div>
-          <hr></hr>
-          <div>
-            <span onClick={this.pickedToggle}>
-              <button>B</button>
-              another answer PH
-            </span>
-          </div>
-          <hr></hr>
-        </div>
       </div>
     );
   }
