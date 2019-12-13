@@ -19,7 +19,7 @@ class QuestionBox extends Component {
     console.log(this.state);
   };
   choicePicked = () => {
-    if (this.state.picked === true && this.state.next === true) {
+    if (this.state.picked === true && this.state.isCorrect === true) {
       return (
         <div>
           <p>wow you are right! </p>
