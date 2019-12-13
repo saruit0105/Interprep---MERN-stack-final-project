@@ -16,6 +16,7 @@ import {
 } from "./components";
 import ShortAnswers from "./components/ShortAnswers";
 import ReactQuestions from "./components/ReactQuestions";
+import NewLanding from "./components/NewLanding";
 
 export default class App extends Component {
   // static contextType = UserContext
@@ -68,6 +69,7 @@ export default class App extends Component {
         <NavBar user={this.state.currentlyLoggedInUser} logout={this.logout} />
         <Switch>
           <Route path="/about" component={About} />
+          <Route path="/new" component={NewLanding} />
           <Route
             exact
             path="/"
