@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { baseURL } from "../config";
+import QuestionBox from ".";
 
 class Questions extends Component {
   state = {
     picked: false,
-    questions: []
+    questions: null,
+    isCorrect: false,
+    randomQuestion: null
   };
 
   fetchQuestions = async () => {
@@ -19,24 +22,45 @@ class Questions extends Component {
       console.log(err);
     }
   };
-  componentDidMount() {
-    this.fetchQuestions();
-  }
+  componentDidMount = async () => {
+    await this.fetchQuestions();
+    await this.pickQuestion();
+  };
+
+  nextQuestion = () => {
+    console.log("Next one");
+    this.setState({
+      next: true
+    });
+  };
 
   pickQuestion = () => {
     let randomQ = this.state.questions[
       Math.floor(Math.random() * this.state.questions.length)
     ];
-
+    this.setState({ randomQ: this.state.randomQuestion });
     console.log(randomQ);
+  };
+
+  showQuestion = () => {
     return (
       <div>
-        <strong>{randomQ ? randomQ.question : ""}</strong>
-        {randomQ &&
-          randomQ.answers.map(eachAnswers => (
+        <strong>
+          {this.state.randomQuestion ? this.state.randomQuestion.question : ""}
+        </strong>
+        {this.state.randomQuestion &&
+          this.state.randomQuestion.answers.map(eachAnswers => (
             <div className="questionBox">
-              <div key={randomQ.answers}>
-                <span onClick={this.pickedToggle}>
+              <div key={this.state.randomQuestion.answers}>
+                <span
+                  onClick={e =>
+                    this.pickHandler(
+                      e,
+                      eachAnswers,
+                      this.state.randomQuestion.solution
+                    )
+                  }
+                >
                   <button></button>
                   {eachAnswers}
                 </span>
@@ -48,12 +72,21 @@ class Questions extends Component {
     );
   };
 
-  pickedToggle = () => {
-    this.setState({ picked: !this.state.picked });
+  pickHandler = (e, eachAnswers, solution) => {
+    e.preventDefault();
+    console.log(solution);
+    console.log(eachAnswers);
+    let questionCheck = false;
+    eachAnswers === solution ? (questionCheck = true) : (questionCheck = false);
+    this.setState({
+      picked: !this.state.picked,
+      questionCheck: this.state.isCorrect
+    });
     console.log(this.state);
   };
+
   choicePicked = () => {
-    if (this.state.picked === true) {
+    if (this.state.picked === true && this.state.next === true) {
       return (
         <div>
           <p>wow you are right! </p>
@@ -75,7 +108,8 @@ class Questions extends Component {
       <div>
         <p> Question 1 out of 5</p>
         {this.choicePicked()}
-        <strong>{this.pickQuestion()}</strong>
+        {/* <button onClick={() => this.nextQuestion()}>Move on</button> */}
+        <strong>{this.showQuestion()}</strong>
       </div>
     );
   }
