@@ -10,6 +10,7 @@ class NavBar extends Component {
 //     } else return <button> click to log in</button>;
 //   };
 
+<<<<<<< HEAD
 //   render() {
 //     console.log(this.props);
 //     return (
@@ -63,6 +64,28 @@ render() {
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
         </ul>
+=======
+  render() {
+    return (
+      <div>
+        <Navbar bg="dark" variant="dark">
+          <Navbar.Brand href="/">
+            <img
+              alt=""
+              src="./images/logo-ironhack.png"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />
+            Bananafish
+          </Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link href="/about">About</Nav.Link>
+            <Nav.Link href="/landing">Quiz</Nav.Link>
+            {this.logInOrOut()}
+          </Nav>
+        </Navbar>
+>>>>>>> 3fccc54d65407cadd0af2a97ee6175ed274ac3cb
       </div>
     </div>
   </nav>

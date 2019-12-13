@@ -12,14 +12,11 @@ import {
   Signup,
   Profile,
   Landing,
-  Questions,
-  
+  Questions
 } from "./components";
 import ShortAnswers from "./components/ShortAnswers";
 import ReactQuestions from "./components/ReactQuestions";
 
-
-console.log(baseURL);
 export default class App extends Component {
   // static contextType = UserContext
   //  this.context.isLoggedIn
@@ -52,17 +49,15 @@ export default class App extends Component {
     });
     let user = await response.data;
     this.setState({ currentlyLoggedInUser: user }, () => {});
-    console.log(this.state);
   };
 
   login = async (email, password) => {
-    console.log(email, password);
     const response = await axios.post(
       `${baseURL}/api/login`,
       { email: email, password: password },
       { withCredentials: true }
     );
-    console.log(response);
+
     let user = await response.data;
     this.setState({ currentlyLoggedInUser: user }, () => {});
   };
@@ -99,20 +94,26 @@ export default class App extends Component {
             )}
           />
 
-           <Route
+          <Route
             exact
             path="/quiz/shortanswers"
             render={props => (
-              <ShortAnswers {...props} user={this.state.currentlyLoggedInUser} />
+              <ShortAnswers
+                {...props}
+                user={this.state.currentlyLoggedInUser}
+              />
             )}
-          />  
+          />
           <Route
             exact
             path="/quiz/react"
             render={props => (
-              <ReactQuestions {...props} user={this.state.currentlyLoggedInUser} />
+              <ReactQuestions
+                {...props}
+                user={this.state.currentlyLoggedInUser}
+              />
             )}
-          /> 
+          />
           <Route path="/content/signup" component={Signup} />
           <Route
             path="/content/Profile"
