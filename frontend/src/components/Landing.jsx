@@ -17,14 +17,18 @@ const links = [
 class Landing extends Component {
   render() {
     return (
-      <div>
+      <div class="container">
+      <div className="text-center">
         <h3> Home </h3>
         <h5> Which quiz would you like to try today?</h5>
         {links.map(({ label, path, catagory }) => (
-          <button key={path}>
+
+
+          <button type="button" class="btn btn-space btn-primary btn-lg" key={path}>
             <Link to={`/quiz/${catagory}`}>{label}</Link>
           </button>
         ))}
+      </div>
       </div>
     );
   }
