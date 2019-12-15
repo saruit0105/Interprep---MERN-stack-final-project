@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 const links = [
-  { label: "Short Answers", path: "/quiz/shortanswers",catagory: "shortanswers" },
+  {
+    label: "Short Answers",
+    path: "/quiz/shortanswers",
+    catagory: "shortanswers"
+  },
 
   {
     label: "JavaScript",
@@ -21,6 +25,7 @@ class Landing extends Component {
   
   render() {
     return (
+<<<<<<< HEAD
       
         
       
@@ -41,6 +46,26 @@ class Landing extends Component {
     </div> 
       
       
+=======
+      <div class="container">
+        <div class="container">
+          <div className="text-center">
+            <h3> Home </h3>
+            <h5> Which quiz would you like to try today?</h5>
+
+            {links.map(({ label, path, catagory }) => (
+              <button
+                type="button"
+                class="btn btn-space btn-primary btn-lg"
+                key={path}
+              >
+                <Link to={`/quiz/${catagory}`}>{label}</Link>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+>>>>>>> a03484c07ec1a21558757ccb12bbdfec992bfea0
     );
   }
 }
