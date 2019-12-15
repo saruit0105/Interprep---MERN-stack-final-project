@@ -1,35 +1,27 @@
 import React, { Component } from "react";
 
 class Login extends Component {
-  state = {
-    email: "",
-    password: ""
-  };
-  updateInput = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-  goToProfile = () => {
-    const { history } = this.props;
-    history.push("/content/profile");
-  };
+  state = { email: "", password: "" };
 
-  passLoginInfo = e => {
+  handleInputChange = field => e => this.setState({ [field]: e.target.value });
+
+  handleSubmit = e => {
     e.preventDefault();
-    this.props.login(this.state.email, this.state.password);
-
-    this.goToProfile();
+    const { handleLogin } = this.props;
+    handleLogin(this.state);
   };
+
   render() {
+    const { email, password } = this.state;
     return (
       <div>
-        <form onSubmit={this.passLoginInfo}>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-label-group">
             <input
               type="text"
-              name="email"
               id="inputEmail"
-              onChange={this.updateInput}
-              value={this.state.email}
+              onChange={this.handleInputChange("email")}
+              value={email}
               className="form-control"
               placeholder="email"
               required
@@ -43,8 +35,8 @@ class Login extends Component {
               type="password"
               name="password"
               id="inputPassword"
-              onChange={this.updateInput}
-              value={this.state.password}
+              onChange={this.handleInputChange("password")}
+              value={password}
               className="form-control"
               placeholder="Password"
               required
@@ -53,11 +45,7 @@ class Login extends Component {
           </div>
 
           <div className="custom-control custom-checkbox mb-3">
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              id="customCheck1"
-            />
+            <input type="checkbox" className="custom-control-input" id="customCheck1" />
             <label className="custom-control-label" htmlFor="customCheck1">
               Remember password
             </label>
@@ -65,7 +53,6 @@ class Login extends Component {
           <button
             className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
             type="submit"
-            onClick={this.notify}
           >
             Sign in
           </button>

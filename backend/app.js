@@ -4,29 +4,25 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const favicon = require("serve-favicon");
-const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const cors = require("cors");
+const Question = require("./models/Question");
 
 mongoose
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(x => {
-    console.log(
-      `Connected to Mongo! Database name: "${x.connections[0].name}"`
-    );
+    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
   })
   .catch(err => {
     console.error("Error connecting to mongo", err);
   });
 
 const app_name = require("./package.json").name;
-const debug = require("debug")(
-  `${app_name}:${path.basename(__filename).split(".")[0]}`
-);
+const debug = require("debug")(`${app_name}:${path.basename(__filename).split(".")[0]}`);
 
 const app = express();
 
@@ -54,8 +50,7 @@ app.use(
     origin: ["http://localhost:3000"]
   })
 );
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "hbs");
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
@@ -78,13 +73,78 @@ app.use((req, res, next) => {
   next();
 });
 
+// const questions = [
+//   {
+//     category: "javascript/array",
+//     question: "What array method appends to the end of an array?",
+//     answers: ["Push", "Pop", "Unshift", "Shift"],
+//     solution: "Push"
+//   },
+//   {
+//     category: "javascript/array",
+//     question: "Does splice mutate the array?",
+//     answers: ["True", "False"],
+//     solution: "True"
+//   },
+//   {
+//     category: "javascript/array",
+//     question: "What data types are arrays in javascript?",
+//     answers: ["Object", "Array", "List", "Collection"],
+//     solution: "Object"
+//   },
+//   {
+//     category: "javascript/string",
+//     question: "Can you access characters on the string using an index?",
+//     answers: ["True", "False"],
+//     solution: "True"
+//   },
+//   {
+//     category: "javascript/string",
+//     question: "Which one of these methods is unique to the string prototype?",
+//     answers: ["Slice", "IndexOf", "Split"],
+//     solution: "Split"
+//   },
+//   {
+//     category: "javascript/react",
+//     question: "Which one of these life cycles happen first",
+//     answers: ["render", "componentDidMount", "componentDidUpdate", "componentWillRecieveProps"],
+//     solution: "render"
+//   },
+//   {
+//     category: "javascript/react",
+//     question: "Can a component change its own props?",
+//     answers: ["True", "False"],
+//     solution: "False"
+//   },
+//   {
+//     category: "javascript/react",
+//     question: "What is state?",
+//     answers: [
+//       "Information passed to a component",
+//       "A dynamic piece of memory managed by the component",
+//       "A lifecycle",
+//       "A large landmass"
+//     ],
+//     solution: "A dynamic piece of memory managed by the component"
+//   }
+// ];
+
+// app.post("/seed", async () => {
+//   console.log("starting to insert", Question);
+//   const foo = await Question.insertMany(questions);
+//   console.log("finished inserting", foo);
+// });
+
 const UserRoutes = require("./routes/UserRoutes");
 app.use("/api", UserRoutes);
+
+const QuestionRoutes = require("./routes/QuestionRoutes");
+app.use("/api", QuestionRoutes);
 
 const index = require("./routes/index");
 app.use("/api", index);
 
-app.get("*", (req, res) => {
+app.get("*", (_, res) => {
   res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
 

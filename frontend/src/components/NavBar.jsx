@@ -1,73 +1,38 @@
+import React from "react";
+import { withRouter, NavLink } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import { Nav } from "react-bootstrap";
-import React, { Component } from "react";
-import './NavBar.css' 
+import "./NavBar.css";
+import { UserContext } from "../context/UserContext";
+import IRON_HACK_LOGO from "../images/logo-ironhack.png";
 
-class NavBar extends Component {
-//   logInOrOut = () => {
-//     if (this.props.user) {
-//       return <button onClick={this.props.logout}>click to log out</button>;
-//     } else return <button> click to log in</button>;
-//   };
+const NavBar = props => (
+  <UserContext.Consumer>{context => <Component {...props} context={context} />}</UserContext.Consumer>
+);
 
-//   render() {
-//     console.log(this.props);
-//     return (
-//       <div>
-//         <Navbar bg="dark" variant="dark">
-//           <Navbar.Brand href="/">
-//             <img
-//               alt=""
-//               src="./images/logo-ironhack.png"
-//               width="30"
-//               height="30"
-//               className="d-inline-block align-top"
-//             />
-//             Bananafish
-//           </Navbar.Brand>
-//           <Nav className="mr-auto">
-//             <Nav.Link href="/about">About</Nav.Link>
-//             <Nav.Link href="/landing">Quiz</Nav.Link>
-//             {this.logInOrOut()}
-//           </Nav>
-//         </Navbar>
-//       </div>
-//     );
-//   }
+const Component = ({ context, history }) => {
+  const { logout, currentUser } = context;
+  const [authHandler, authLabel, homePath] = currentUser
+    ? [logout, "Logout", "/landing"]
+    : [() => history.push("/"), "Login", "/"];
 
-render() {
-  return(
-<div>
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav text-uppercase ml-auto">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#team">Team</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-          </li>
-        </ul>
-      </div>
+  return (
+    <div>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand onClick={() => history.push(homePath)}>
+          <img alt="" src={IRON_HACK_LOGO} width="30" height="30" className="d-inline-block align-top" />
+          Bananafish
+        </Navbar.Brand>
+        <Nav className="mr-auto">
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/quiz">Quiz</NavLink>
+          <NavLink to="/ranking">Ranking</NavLink>
+          <NavLink to="/followers">Followers</NavLink>
+          <button onClick={authHandler}>{authLabel}</button>
+        </Nav>
+      </Navbar>
     </div>
-  </nav>
-  </div>
-  )}
-}
+  );
+};
 
-export default NavBar;
+export default withRouter(NavBar);

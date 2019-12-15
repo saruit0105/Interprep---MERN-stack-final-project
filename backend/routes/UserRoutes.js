@@ -2,35 +2,28 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const { Types } = require("mongoose");
+
 //sign up
 router.post("/signup", async (req, res, next) => {
   try {
     const { body } = req;
     const salt = bcrypt.genSaltSync(10);
-    const password = bcrypt.hashSync(body.newPassword, salt);
-    const email = body.newEmail;
-    const name = body.newName;
-    const campus = body.newCampus;
-    const course = body.newCourse;
-    const result = await User.create({
-      email,
-      name,
-      password,
-      campus,
-      course
-    });
-    res.json({ message: "success", user: result });
+    const password = bcrypt.hashSync(body.password, salt);
+    const user = await User.create({ ...body, password });
+    res.send({ message: "success", user });
   } catch (err) {
     next(err);
   }
 });
+
 //login
 router.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).populate("followers");
     if (!user) {
-      res.json({
+      res.send({
         message: "email not found,please check and try again!",
         code: 1
       });
@@ -38,14 +31,13 @@ router.post("/login", async (req, res, next) => {
     }
     const isAuthenticated = bcrypt.compareSync(password, user.password || "");
     if (!isAuthenticated) {
-      return res.json({
+      return res.send({
         errorMessage: "incorrect password, please try again",
         code: 1
       });
     }
     req.session.currentUser = user;
-    res.json(user);
-    console.log(user);
+    res.send(user);
   } catch (err) {
     next(err);
   }
@@ -56,36 +48,37 @@ router.post("/login", async (req, res, next) => {
 router.post("/update", async (req, res, next) => {
   try {
     const id = req.currentUser._id;
-    let update = { ...req.body };
-    await User.findByIdAndUpdate(id, update, { new: true });
-    res.json({ message: "Success!" });
-  } catch (err) {
-    next(err);
-  }
-});
-
-//upload picture
-router.post("/upload", async (req, res, next) => {
-  try {
-    const id = req.currentUser._id;
-    let newPic = { ...req.body };
-    await User.findByIdAndUpdate(id, newPic, { new: true });
-    res.json({ message: "Success!" });
+    const updatedUser = await User.findByIdAndUpdate(id, req.body, {
+      new: true
+    });
+    res.send({ message: "Success!", user: updatedUser });
   } catch (err) {
     next(err);
   }
 });
 
 //login info
-router.get("/get-user-info", async (req, res, _) => {
-  console.log("hmmm", req.session);
-  if (req.session.currentUser) {
-    res.json(req.session.currentUser);
-  } else {
-    res.json(null);
-  }
+router.get("/get-user-info", async (req, res) => res.send(req.session.currentUser || null));
+
+router.get("/users", async (_, res) => {
+  const users = await User.find();
+  const sortedUsers = users.sort((a, b) => {
+    const aValue = a.points;
+    const bValue = b.points;
+    if (aValue === bValue) return 0;
+    return aValue > bValue ? 1 : -1;
+  });
+  res.send(sortedUsers);
 });
 
+router.post("/users/follow", (req, res) => {
+  const { idToFollow, currentUserId } = req.body;
+  User.findOne({ _id: idToFollow }, async (_, doc) => {
+    doc.followers = [...doc.followers, currentUserId];
+    await doc.save();
+    res.send(doc);
+  });
+});
 //logout
 router.post("/logout", async (req, res) => {
   await req.session.destroy();

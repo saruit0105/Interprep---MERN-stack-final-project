@@ -1,0 +1,16 @@
+.quiz-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-question {
+  display: flex;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}

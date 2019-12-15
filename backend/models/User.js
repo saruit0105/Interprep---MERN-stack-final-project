@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
   email: {
@@ -16,27 +15,12 @@ const userSchema = new Schema({
     required: true
   },
   admin: { type: Boolean, default: false },
-  campus: {
-    type: String,
-    enum: [
-      "Madrid",
-      "Barcelona",
-      "Miami",
-      "Paris",
-      "Berlin",
-      "Amsterdam",
-      "Mexico",
-      "Sao Paulo",
-      "Lisbon"
-    ]
-  },
-  course: { type: String, enum: ["WebDev", "UX/UI", "Data Analytics"] },
   image: String,
   linkedin: String,
   github: String,
   points: String,
-  followers: Array
+  followers: [{ type: Schema.Types.ObjectId, ref: "User" }]
 });
 
-const User = mongoose.model("User", userSchema);
+const User = model("User", userSchema);
 module.exports = User;

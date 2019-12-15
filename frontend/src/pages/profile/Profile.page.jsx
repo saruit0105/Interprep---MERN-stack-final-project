@@ -1,86 +1,14 @@
 import React, { Component } from "react";
-import "./Profile.css";
+import { UserContext } from "../../context/UserContext";
+import "./Profile.page.css";
 
 class Profile extends Component {
+  static contextType = UserContext;
+
   render() {
+    const { currentUser } = this.context;
+    const { name, email } = currentUser;
     return (
-      //       <div className="container">
-      //         <div className="row profile">
-      //           <div className="col-md-3">
-      //             <div className="profile-sidebar">
-      //               <div className="profile-userpic">
-      //                 <img
-      //                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png"
-      //                   className="img-responsive"
-      //                   alt=""
-      //                 />
-      //               </div>
-
-      //               <div className="profile-usertitle">
-      //                 <div className="profile-usertitle-name">Marcus Doe</div>
-      //                 <div className="profile-usertitle-job">Developer</div>
-      //               </div>
-
-      //               <div className="profile-userbuttons">
-      //                 <button type="button" className="btn btn-success btn-sm">
-      //                   Follow
-      //                 </button>
-      //                 <button type="button" className="btn btn-danger btn-sm">
-      //                   Message
-      //                 </button>
-      //               </div>
-
-      //               <div className="profile-usermenu">
-      //                 <ul className="nav">
-      //                   <li className="active">
-      //                     <a href="#">
-      //                       <i className="glyphicon glyphicon-home"></i>
-      //                       Overview{" "}
-      //                     </a>
-      //                   </li>
-      //                   <li>
-      //                     <a href="#">
-      //                       <i className="glyphicon glyphicon-user"></i>
-      //                       Account Settings
-      //                     </a>
-      //                   </li>
-      //                   <li>
-      //                     <a href="#" target="_blank">
-      //                       <i className="glyphicon glyphicon-ok"></i>
-      //                       Tasks{" "}
-      //                     </a>
-      //                   </li>
-      //                   <li>
-      //                     <a href="#">
-      //                       <i className="glyphicon glyphicon-flag"></i>
-      //                       Help{" "}
-      //                     </a>
-      //                   </li>
-      //                 </ul>
-      //               </div>
-      //             </div>
-      //           </div>
-      //           <div className="col-md-9">
-      //             <div className="profile-content">
-      //               Some user related content goes here...
-      //             </div>
-      //           </div>
-      //         </div>
-
-      //         <center>
-      //           <strong>
-      //             Powered by{" "}
-      //             <a href="http://j.mp/metronictheme" target="_blank">
-      //               KeenThemes
-      //             </a>
-      //           </strong>
-      //         </center>
-      //         <br />
-      //         <br />
-      //       </div>
-      //     );
-      //   }
-      // }
       <div>
         <link
           href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -143,12 +71,7 @@ class Profile extends Component {
                 </div>
               </div>
               <div class="col-md-2">
-                <input
-                  type="submit"
-                  class="profile-edit-btn"
-                  name="btnAddMore"
-                  value="Edit Profile"
-                />
+                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
               </div>
             </div>
             <div class="row">
@@ -175,26 +98,13 @@ class Profile extends Component {
               </div>
               <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
-                  <div
-                    class="tab-pane fade show active"
-                    id="home"
-                    role="tabpanel"
-                    aria-labelledby="home-tab"
-                  >
-                    <div class="row">
-                      <div class="col-md-6">
-                        <label>User Id</label>
-                      </div>
-                      <div class="col-md-6">
-                        <p>Kshiti123</p>
-                      </div>
-                    </div>
+                  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div class="row">
                       <div class="col-md-6">
                         <label>Name</label>
                       </div>
                       <div class="col-md-6">
-                        <p>Kshiti Ghelani</p>
+                        <p>{name}</p>
                       </div>
                     </div>
                     <div class="row">
@@ -202,7 +112,7 @@ class Profile extends Component {
                         <label>Email</label>
                       </div>
                       <div class="col-md-6">
-                        <p>kshitighelani@gmail.com</p>
+                        <p>{email}</p>
                       </div>
                     </div>
                     <div class="row">
@@ -222,12 +132,7 @@ class Profile extends Component {
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="tab-pane fade"
-                    id="profile"
-                    role="tabpanel"
-                    aria-labelledby="profile-tab"
-                  >
+                  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="row">
                       <div class="col-md-6">
                         <label>Experience</label>

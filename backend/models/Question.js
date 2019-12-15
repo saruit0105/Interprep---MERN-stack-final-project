@@ -1,13 +1,11 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema, model } = require("mongoose");
 
 const questionSchema = new Schema({
   question: String,
   answers: Array,
   solution: String,
-  explaination: String,
-  catagory: String
+  category: String
 });
 
-const Question = mongoose.model("Question", questionSchema);
+const Question = model("Question", questionSchema);
 module.exports = Question;
