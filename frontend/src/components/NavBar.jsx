@@ -24,10 +24,20 @@ const Component = ({ context, history }) => {
           Bananafish
         </Navbar.Brand>
         <Nav className="mr-auto">
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/quiz">Quiz</NavLink>
-          <NavLink to="/ranking">Ranking</NavLink>
-          <NavLink to="/followers">Followers</NavLink>
+          <ul className="navList">
+            <li>
+              <NavLink to="/about">About</NavLink>
+            </li>
+            <li>
+              <NavLink to="/quiz">Quiz</NavLink>
+            </li>
+            <li>
+              <NavLink to="/ranking">Ranking</NavLink>
+            </li>
+            <li>
+              <NavLink to="/followers">Followers</NavLink>
+            </li>
+          </ul>
           <button onClick={authHandler}>{authLabel}</button>
         </Nav>
       </Navbar>

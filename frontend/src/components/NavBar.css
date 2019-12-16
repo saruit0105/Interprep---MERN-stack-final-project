@@ -1,11 +1,30 @@
 a {
-    color: blue;
-  }
+  color: blue;
+}
 
-  a:hover {
-    color: blue;
-  }
-  
-  .text-primary {
-    color: blue !important;
-  }
+a:hover {
+  color: blue;
+}
+
+.text-primary {
+  color: blue !important;
+}
+
+.navList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+ul.navList li {
+  float: left;
+}
+
+ul.navList li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
