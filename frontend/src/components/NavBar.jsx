@@ -26,16 +26,24 @@ const Component = ({ context, history }) => {
         <Nav className="mr-auto">
           <ul className="navList">
             <li>
-              <NavLink to="/about">About</NavLink>
+              <NavLink to="/about" activeStyle={{ background: "tomato" }}>
+                About
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/quiz">Quiz</NavLink>
+              <NavLink to="/quiz" activeStyle={{ background: "tomato" }}>
+                Quiz
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/ranking">Ranking</NavLink>
+              <NavLink to="/ranking" activeStyle={{ background: "tomato" }}>
+                Ranking
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/followers">Followers</NavLink>
+              <NavLink to="/followers" activeStyle={{ background: "tomato" }}>
+                Followers
+              </NavLink>
             </li>
           </ul>
           <button onClick={authHandler}>{authLabel}</button>
