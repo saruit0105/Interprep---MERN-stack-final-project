@@ -117,10 +117,14 @@ class Quiz extends Component {
     );
   };
 
+  addScore = () => {
+    const { currentQuestionIndex, correctAnswerCount } = this.state;
+    alert(`You got ${correctAnswerCount} correct out of ${currentQuestionIndex + 1}`);
+  };
+
   render() {
-    const { questions, currentQuestionIndex, submited, currentAnswer, correctAnswerCount, diffculty } = this.state;
+    const { questions, currentQuestionIndex, currentAnswer } = this.state;
     const { question, answers } = questions[currentQuestionIndex] || {};
-    const isFinalQuestion = currentQuestionIndex === questions.length - 1;
     return (
       <div>
         {this.difficultyBox()}
@@ -137,12 +141,6 @@ class Quiz extends Component {
           ))}
           <input type="submit" value="Submit!" />
         </form>
-        {/* {submited && !isFinalQuestion && <button onClick={this.nextQuestion}>Next Question</button>}
-        {submited && isFinalQuestion && (
-          <button onClick={() => alert(`You got ${correctAnswerCount} correct out of ${questions.length}`)}>
-            Finish
-          </button>
-        )} */}
         {this.finalQuestion()}
       </div>
     );
