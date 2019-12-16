@@ -25,7 +25,7 @@ class Landing extends Component {
   
   render() {
     return (
-      
+
       
       <header class="masthead bg-primary text-white text-center">
       <div class="container d-flex align-items-center flex-column">
@@ -34,7 +34,7 @@ class Landing extends Component {
         <img class="masthead-avatar mb-5" src="img/avataaars.svg" alt=""/>
   
         
-        <h1 class="masthead-heading text-uppercase mb-0">Start Bootstrap Welcome</h1>
+        <h1 class="masthead-heading text-uppercase mb-0">Start Bootstrap</h1>
   
         
         <div class="divider-custom divider-light">
