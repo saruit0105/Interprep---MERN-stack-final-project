@@ -73,67 +73,118 @@ app.use((req, res, next) => {
   next();
 });
 
-// const questions = [
-//   {
-//     category: "javascript/array",
-//     question: "What array method appends to the end of an array?",
-//     answers: ["Push", "Pop", "Unshift", "Shift"],
-//     solution: "Push"
-//   },
-//   {
-//     category: "javascript/array",
-//     question: "Does splice mutate the array?",
-//     answers: ["True", "False"],
-//     solution: "True"
-//   },
-//   {
-//     category: "javascript/array",
-//     question: "What data types are arrays in javascript?",
-//     answers: ["Object", "Array", "List", "Collection"],
-//     solution: "Object"
-//   },
-//   {
-//     category: "javascript/string",
-//     question: "Can you access characters on the string using an index?",
-//     answers: ["True", "False"],
-//     solution: "True"
-//   },
-//   {
-//     category: "javascript/string",
-//     question: "Which one of these methods is unique to the string prototype?",
-//     answers: ["Slice", "IndexOf", "Split"],
-//     solution: "Split"
-//   },
-//   {
-//     category: "javascript/react",
-//     question: "Which one of these life cycles happen first",
-//     answers: ["render", "componentDidMount", "componentDidUpdate", "componentWillRecieveProps"],
-//     solution: "render"
-//   },
-//   {
-//     category: "javascript/react",
-//     question: "Can a component change its own props?",
-//     answers: ["True", "False"],
-//     solution: "False"
-//   },
-//   {
-//     category: "javascript/react",
-//     question: "What is state?",
-//     answers: [
-//       "Information passed to a component",
-//       "A dynamic piece of memory managed by the component",
-//       "A lifecycle",
-//       "A large landmass"
-//     ],
-//     solution: "A dynamic piece of memory managed by the component"
-//   }
-// ];
+const questions = [
+  {
+    category: "javascript/react",
+    question: "What type of components allow you to initialize state?",
+    answers: ["Functional components", "Class components", "Pure components", "Object components"],
+    solution: "Class components"
+  },
+  {
+    category: "javascript/react",
+    question: "The only required method in a class component is:",
+    answers: ["onClick()", "render()", "return()", "componentDidMount()"],
+    solution: "render()"
+  },
+  {
+    category: "javascript/react",
+    question: "Can you define any stateless functional component as a class?",
+    answers: ["Yes", "No"],
+    solution: "Yes"
+  },
+  {
+    category: "javascript/react",
+    question: "What type of state is available to the entire app?",
+    answers: ["setState()", "Application state", "prevState()", "Component state"],
+    solution: "Application state"
+  },
+  {
+    category: "javascript/react",
+    question:
+      "State may be updated asynchronously. Whenever you need to update state based on previous state, you shouldn't rely on _____ to calculate the next state.",
+    answers: ["this.state", "onClick{}", "state = {}", ".bind()"],
+    solution: "this.state"
+  },
+  {
+    category: "javascript/react",
+    question: "Data from state is distributed through the application via ___.",
+    answers: ["functions", "events", "props", "setState()"],
+    solution: "setState()"
+  },
+  {
+    category: "javascript/react",
+    question: "In React, state is never modified directly.",
+    answers: [
+      "True. The only way React allows you to update state is by using it's built in setState() method.",
+      "False. State is a regular JavaScript object, so you can change its properties using dot notation"
+    ],
+    solution: "True. The only way React allows you to update state is by using it's built in setState() method."
+  },
+  {
+    category: "javascript/general",
+    question: "What does 'syntax' mean?",
+    answers: [
+      "Synthax is like the vocabulary and grammar of a programming language. It's a language's words and commands as well as the instructions for putting them together to create a program",
+      "Synthax is another programming language that's becoming as popular as JavaScript",
+      "Synthax is command in the JavaScript programming language"
+    ],
+    solution:
+      "Synthax is like the vocabulary and grammar of a programming language. It's a language's words and commands as well as the instructions for putting them together to create a program"
+  },
+  {
+    category: "javascript/general",
+    question: "You can use JavaScript on a web server.",
+    answers: ["True", "False"],
+    solution: "True"
+  },
+  {
+    category: "javascript/general",
+    question: "Java and JavaScript are the same thing?",
+    answers: ["True", "False"],
+    solution: "False"
+  },
+  {
+    category: "javascript/general",
+    question: "JavaScript is used to build complex web applications, like Gmail, Google Docs, and Google Maps.",
+    answers: ["True", "False"],
+    solution: "True"
+  },
+  {
+    category: "javascript/general",
+    question: "What does this condition evaluate to: true or false?:(true && false)",
+    answers: ["True", "False"],
+    solution: "False"
+  },
+  {
+    category: "javascript/general",
+    question: "What does this condition evaluate to: true or false?:(true || false)",
+    answers: ["True", "False"],
+    solution: "True"
+  },
+  {
+    category: "javascript/general",
+    question: "What keyword do you use to create a function in JavaScript?",
+    answers: ["function", "var", "makeFunction", "def"],
+    solution: "function"
+  },
+  {
+    category: "javascript/general",
+    question: "Which of the following describes a function?",
+    answers: [
+      "A function is used to add decision making to your program, allowing your program to follow different paths depending on the conditions",
+      "A function is used to hold multiple pieces of information similar to a database",
+      "A function means the same thing as a JavaScript program",
+      "A function lets you store a block of code that you can use over and over again"
+    ],
+    solution: "A function lets you store a block of code that you can use over and over again"
+  }
+];
 
-// app.post("/seed", async () => {
-//   console.log("starting to insert", Question);
-//   const foo = await Question.insertMany(questions);
-//   console.log("finished inserting", foo);
-// });
+app.post("/seed", async () => {
+  console.log("starting to insert", Question);
+  const foo = await Question.insertMany(questions);
+  console.log("finished inserting", foo);
+});
 
 const UserRoutes = require("./routes/UserRoutes");
 app.use("/api", UserRoutes);

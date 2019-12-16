@@ -11,7 +11,7 @@ router.get("/getQuestions", async (_, res, next) => {
   }
 });
 
-router.get("/questions/:category/:subcategory", async (req, res) => {
+router.get("/questions/:category/:subcategory/", async (req, res) => {
   const {
     params: { category = "", subcategory = "" }
   } = req;
