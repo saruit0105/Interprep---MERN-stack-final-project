@@ -9,12 +9,13 @@ const Component = ({ context }) => {
   return (
     <div>
       <p>Followers</p>
-      {currentUser.followers.map(({ name, points }) => (
-        <div>
-          <p>{name}</p>
-          <p>Points: {points}</p>
-        </div>
-      ))}
+      {currentUser.followers &&
+        currentUser.followers.map(({ name, points }) => (
+          <div>
+            <p>{name}</p>
+            <p>Points: {points}</p>
+          </div>
+        ))}
     </div>
   );
 };
