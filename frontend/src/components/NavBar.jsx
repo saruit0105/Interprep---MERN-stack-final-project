@@ -46,7 +46,9 @@ const Component = ({ context, history }) => {
               </NavLink>
             </li>
           </ul>
-          <button onClick={authHandler}>{authLabel}</button>
+          <button onClick={authHandler} className="loginButton">
+            {authLabel}
+          </button>
         </Nav>
       </Navbar>
     </div>

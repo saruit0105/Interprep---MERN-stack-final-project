@@ -28,3 +28,10 @@ ul.navList li a {
   padding: 16px;
   text-decoration: none;
 }
+
+.loginButton {
+  background-color: #343a40 !important;
+  border-style: none;
+
+  float: right;
+}
