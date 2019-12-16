@@ -30,11 +30,11 @@ const Component = ({ context, history }) => {
                 About
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/quiz" activeStyle={{ background: "tomato" }}>
                 Quiz
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/ranking" activeStyle={{ background: "tomato" }}>
                 Ranking
