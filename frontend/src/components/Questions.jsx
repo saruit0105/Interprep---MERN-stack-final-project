@@ -41,16 +41,12 @@ class Questions extends Component {
 
   countCheck = () => {
     this.state.counter > 4
-      ? alert(
-          `Good job on finishing the quiz, you got ${this.state.howManyCorrect}/5 answers correct`
-        )
+      ? alert(`Good job on finishing the quiz, you got ${this.state.howManyCorrect}/5 answers correct`)
       : console.log("youre not done yet");
   };
 
   pickQuestion = () => {
-    let randomQ = this.state.questions[
-      Math.floor(Math.random() * this.state.questions.length)
-    ];
+    let randomQ = this.state.questions[Math.floor(Math.random() * this.state.questions.length)];
     this.setState({ randomQuestion: randomQ });
   };
 

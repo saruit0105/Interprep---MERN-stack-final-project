@@ -46,8 +46,9 @@ router.post("/login", async (req, res, next) => {
 //update user
 
 router.post("/update", async (req, res, next) => {
+  console.log(req.session, ">>>>>>>");
   try {
-    const id = req.currentUser._id;
+    const id = req.session.currentUser._id;
     const updatedUser = await User.findByIdAndUpdate(id, req.body, {
       new: true
     });

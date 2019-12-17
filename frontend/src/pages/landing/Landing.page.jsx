@@ -73,7 +73,7 @@ const Component = ({ context }) => {
       <header class="masthead bg-primary text-white text-center">
         <div class="container d-flex align-items-center flex-column">
           <img class="masthead-avatar mb-5" src={FISH_LOGO} alt="" />
-          <h1 class="masthead-heading text-uppercase mb-0">Welcome {currentUser.name} </h1>
+          <h1 class="masthead-heading text-uppercase mb-0">Welcome {currentUser.name}</h1>
           <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
             <div class="divider-custom-icon">
@@ -109,8 +109,8 @@ const Component = ({ context }) => {
                   <button className="picButton">
                     <h3 className="labels">{label}</h3>
                     <img class="img-fluid" src={picture} alt="" />
-                    {category.map(eachCategory => (
-                      <Link to={`/quiz/${eachCategory.links}`}>{eachCategory.difficulty}</Link>
+                    {category.map(({ links, difficulty }) => (
+                      <Link to={`/quiz/${links}`}>{difficulty}</Link>
                     ))}
                   </button>
                 </div>
