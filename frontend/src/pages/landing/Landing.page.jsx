@@ -8,9 +8,61 @@ import CSS_LOGO from "../../images/css-logo.png";
 import { UserContext } from "../../context/UserContext";
 
 const links = [
-  { label: "General", category: "javascript/general", picture: JAVASCRIPT_LOGO },
-  { label: "CSS", category: "javascript/css", picture: CSS_LOGO },
-  { label: "React", category: "javascript/react", picture: REACT_LOGO }
+  {
+    label: "General",
+    category: [
+      {
+        difficulty: "easy",
+        links: "javascript/general/easy"
+      },
+      {
+        difficulty: "medium",
+        links: "javascript/general/medium"
+      },
+      {
+        difficulty: "hard",
+        links: "javascript/general/hard"
+      }
+    ],
+    picture: JAVASCRIPT_LOGO
+  },
+  {
+    label: "CSS",
+    category: [
+      {
+        difficulty: "easy",
+        links: "javascript/css/easy"
+      },
+      {
+        difficulty: "medium",
+        links: "javascript/css/medium"
+      },
+      {
+        difficulty: "hard",
+        links: "javascript/css/hard"
+      }
+    ],
+    picture: CSS_LOGO
+  },
+  {
+    label: "React",
+    category: [
+      {
+        difficulty: "easy",
+        links: "javascript/react/easy"
+      },
+      {
+        difficulty: "medium",
+        links: "javascript/react/medium"
+      },
+      {
+        difficulty: "hard",
+        links: "javascript/react/hard"
+      }
+    ],
+    picture: REACT_LOGO,
+    difficulty: ["Easy", "Medium", "Hard"]
+  }
 ];
 const Landing = () => <UserContext.Consumer>{context => <Component context={context} />}</UserContext.Consumer>;
 
@@ -21,7 +73,7 @@ const Component = ({ context }) => {
       <header class="masthead bg-primary text-white text-center">
         <div class="container d-flex align-items-center flex-column">
           <img class="masthead-avatar mb-5" src={FISH_LOGO} alt="" />
-          <h1 class="masthead-heading text-uppercase mb-0">Welcome {currentUser.name||"banana"} </h1>
+          <h1 class="masthead-heading text-uppercase mb-0">Welcome {currentUser} </h1>
           <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
             <div class="divider-custom-icon">
@@ -55,10 +107,11 @@ const Component = ({ context }) => {
                     </div>
                   </div>
                   <button className="picButton">
-                    <Link to={`/quiz/${category}`}>
-                      <img class="img-fluid" src={picture} alt="" />
-                      {label}
-                    </Link>
+                    <h3 className="labels">{label}</h3>
+                    <img class="img-fluid" src={picture} alt="" />
+                    {category.map(eachCategory => (
+                      <Link to={`/quiz/${eachCategory.links}`}>{eachCategory.difficulty}</Link>
+                    ))}
                   </button>
                 </div>
               </div>
