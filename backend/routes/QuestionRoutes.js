@@ -11,12 +11,12 @@ router.get("/getQuestions", async (_, res, next) => {
   }
 });
 
-router.get("/questions/:category/:subcategory/", async (req, res) => {
+router.get("/questions/:category/:subcategory/:difficulty", async (req, res) => {
   const {
-    params: { category = "", subcategory = "" }
+    params: { category = "", subcategory = "", difficulty = "" }
   } = req;
   const questionCategory = subcategory ? `${category}/${subcategory}` : category;
-  const questions = await Question.find({ category: questionCategory });
+  const questions = await Question.find({ category: questionCategory, difficulty: difficulty });
   res.send(questions.sort(() => Math.random() - 0.5));
 });
 

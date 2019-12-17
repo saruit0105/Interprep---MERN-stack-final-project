@@ -11,7 +11,7 @@ const App = () => (
       <Route path="/new" component={NewLanding} />
       <Route path="/about" component={About} />
       <Route exact path="/" component={Home} />
-      <AuthRoute exact path="/quiz/:category?/:subcategory?" component={Quiz} />
+      <AuthRoute exact path="/quiz/:category?/:subcategory?/:difficulty?" component={Quiz} />
       <Route exact path="/landing" component={Landing} />
       <AuthRoute path="/profile" component={Profile} />
       <AuthRoute path="/ranking" component={Ranking} />

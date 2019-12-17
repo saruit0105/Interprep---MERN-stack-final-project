@@ -8,9 +8,61 @@ import CSS_LOGO from "../../images/css-logo.png";
 import { UserContext } from "../../context/UserContext";
 
 const links = [
-  { label: "General", category: "javascript/general", picture: JAVASCRIPT_LOGO },
-  { label: "CSS", category: "javascript/css", picture: CSS_LOGO },
-  { label: "React", category: "javascript/react", picture: REACT_LOGO }
+  {
+    label: "General",
+    category: [
+      {
+        difficulty: "easy",
+        links: "javascript/general/easy"
+      },
+      {
+        difficulty: "medium",
+        links: "javascript/general/medium"
+      },
+      {
+        difficulty: "hard",
+        links: "javascript/general/hard"
+      }
+    ],
+    picture: JAVASCRIPT_LOGO
+  },
+  {
+    label: "CSS",
+    category: [
+      {
+        difficulty: "easy",
+        links: "javascript/css/easy"
+      },
+      {
+        difficulty: "medium",
+        links: "javascript/css/medium"
+      },
+      {
+        difficulty: "hard",
+        links: "javascript/css/hard"
+      }
+    ],
+    picture: CSS_LOGO
+  },
+  {
+    label: "React",
+    category: [
+      {
+        difficulty: "easy",
+        links: "javascript/react/easy"
+      },
+      {
+        difficulty: "medium",
+        links: "javascript/react/medium"
+      },
+      {
+        difficulty: "hard",
+        links: "javascript/react/hard"
+      }
+    ],
+    picture: REACT_LOGO,
+    difficulty: ["Easy", "Medium", "Hard"]
+  }
 ];
 const Landing = () => <UserContext.Consumer>{context => <Component context={context} />}</UserContext.Consumer>;
 
@@ -55,10 +107,11 @@ const Component = ({ context }) => {
                     </div>
                   </div>
                   <button className="picButton">
-                    <Link to={`/quiz/${category}`}>
-                      <img class="img-fluid" src={picture} alt="" />
-                      {label}
-                    </Link>
+                    <h3 className="labels">{label}</h3>
+                    <img class="img-fluid" src={picture} alt="" />
+                    {category.map(eachCategory => (
+                      <Link to={`/quiz/${eachCategory.links}`}>{eachCategory.difficulty}</Link>
+                    ))}
                   </button>
                 </div>
               </div>
