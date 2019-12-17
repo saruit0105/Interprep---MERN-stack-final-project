@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Home, Profile, About, Landing, Quiz, Ranking, Followers } from "./pages";
+import { Home, Profile, About, Landing, Quiz, Ranking, Followers,Test } from "./pages";
 import { NavBar, AuthRoute, NewLanding } from "./components";
 import "./App.css";
 
@@ -16,6 +16,7 @@ const App = () => (
       <AuthRoute path="/profile" component={Profile} />
       <AuthRoute path="/ranking" component={Ranking} />
       <AuthRoute path="/followers" component={Followers} />
+      <Route path="/test" component={Test}/>
     </Switch>
   </div>
 );

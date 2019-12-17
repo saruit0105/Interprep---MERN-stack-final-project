@@ -127,21 +127,41 @@ class Quiz extends Component {
     const { questions, currentQuestionIndex, currentAnswer } = this.state;
     const { question, answers } = questions[currentQuestionIndex] || {};
     return (
-      <div>
+      <div  className="body">
         {this.difficultyBox()}
         <p>
           <bold>{question}</bold>
         </p>
         {this.choicePicked()}
-        <form className="form" onSubmit={this.handleSubmit}>
+        
+
+      {/* This Version works */}
+
+
+        {/* <form className="form" onSubmit={this.handleSubmit}>
           {(answers || []).map(answer => (
-            <div className="inputGroup">
-              <input checked={answer === currentAnswer} id="radio1" name="radio" onChange={this.handleAnswer} type="radio" label={answer} />
+            <div className="answer">
+              <input checked={answer === currentAnswer}  name="radio" onChange={this.handleAnswer} type="radio" value={answer} />
               {answer}
             </div>
           ))}
           <input type="submit" value="Submit!" />
-        </form>
+        </form> */}
+
+ {/* This Version doesn't work */}
+
+<form class="form" onSubmit={this.handleSubmit}>
+      <h2>{question}</h2>
+      {(answers || []).map(answer=>(
+        <div class="inputGroup">
+    <input id="radio" name="radio" type="radio" onChange={this.handleAnswer}/>
+      <label for="radio">{answer}</label>
+  </div>
+
+      ))}
+        <input type="submit" value="Submit!" />
+</form>
+
         {this.finalQuestion()}
       </div>
     );
