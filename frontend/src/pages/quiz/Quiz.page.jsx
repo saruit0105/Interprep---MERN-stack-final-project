@@ -92,12 +92,8 @@ class Quiz extends Component {
     const { questions, currentQuestionIndex, currentAnswer } = this.state;
     const { question, answers } = questions[currentQuestionIndex] || {};
     return (
-<<<<<<< HEAD
       <div  className="body">
         {this.difficultyBox()}
-=======
-      <div>
->>>>>>> ed5ad191bea15cb0ff610797fc14fbac76115f02
         <p>
           <bold>{question}</bold>
         </p>

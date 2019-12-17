@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import classNames from "classnames";
+
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 import { baseURL } from "../../config";
 import "./Ranking.page.css";
-
+import classNames from 'classnames'
+import Table from 'react-bootstrap/Table'
 class Ranking extends Component {
   static contextType = UserContext;
   state = { users: [], refetch: true };
@@ -32,20 +33,62 @@ class Ranking extends Component {
     const { users } = this.state;
     const { currentUser } = this.context;
     return (
-      <div>
-        <p>Ranking Page</p>
+      <div className="body">
+        {/* <h2>Ranking Page</h2>
         {users.map(({ _id, name, points, followers }) => {
           const isCurrentUser = currentUser._id === _id;
           const alreadyFollowing = followers.some(id => currentUser._id === id);
           return (
             <div className={classNames("user", { currentUser: isCurrentUser })}>
               <p>
-                {name} - {points || 0}
+              <span> 
+              {!isCurrentUser && !alreadyFollowing && <button onClick={this.follow(_id)} >Follow!</button>}
+                <strong>
+                  {name}
+                </strong>  - {points || 0}
+                 </span>
+              
               </p>
-              {!isCurrentUser && !alreadyFollowing && <button onClick={this.follow(_id)}>Follow!</button>}
+              
             </div>
           );
         })}
+
+
+ */}
+<Table striped bordered hover>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Points</th>
+      <th>Follow</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {users.map(({ _id, name, points, followers, },index) => {
+          const isCurrentUser = currentUser._id === _id;
+          const alreadyFollowing = followers.some(id => currentUser._id === id);
+          return (
+            <tr>
+              <td>{index}</td>
+              <td className={classNames("user", { currentUser: isCurrentUser })}><strong>
+                  {name}
+                </strong></td>
+                <td>{points||0}</td>
+                <td>{!isCurrentUser && !alreadyFollowing && <button onClick={this.follow(_id)} >Follow!</button>}
+                {!isCurrentUser && alreadyFollowing && <button disabled >Following</button>}
+                </td>
+               
+                </tr>
+              
+            
+          );
+        })}
+    
+  </tbody>
+</Table>
       </div>
     );
   }
