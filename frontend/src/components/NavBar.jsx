@@ -31,7 +31,7 @@ const Component = ({ context, history }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/quiz" activeStyle={{ background: "tomato" }}>
+              <NavLink to="/landing" activeStyle={{ background: "tomato" }}>
                 Quiz
               </NavLink>
             </li>

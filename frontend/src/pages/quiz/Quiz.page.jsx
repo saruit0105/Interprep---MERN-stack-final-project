@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../../config";
 import "./Quiz.page.css";
+import "./Quiz.page.scss";
 
 class Quiz extends Component {
   state = {
@@ -73,15 +74,25 @@ class Quiz extends Component {
           <bold>{question}</bold>
         </p>
         {this.choicePicked()}
-        <form className="quiz-form" onSubmit={this.handleSubmit}>
+        <form className="form" onSubmit={this.handleSubmit}>
           {(answers || []).map(answer => (
-            <div className="quiz-question">
-              <input checked={answer === currentAnswer} onChange={this.handleAnswer} type="radio" value={answer} />
+            <div className="inputGroup">
+              <input checked={answer === currentAnswer} id="radio1" name="radio" onChange={this.handleAnswer} type="radio" label={answer} />
               {answer}
             </div>
           ))}
           <input type="submit" value="Submit!" />
         </form>
+
+      
+  
+  
+
+            
+
+
+
+
         {submited && !isFinalQuestion && <button onClick={this.nextQuestion}>Next Question</button>}
         {submited && isFinalQuestion && (
           <button onClick={() => alert(`You got ${correctAnswerCount} correct out of ${questions.length}`)}>
