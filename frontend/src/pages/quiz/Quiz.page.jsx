@@ -73,6 +73,7 @@ class Quiz extends Component {
     return (
       <div>
         {submited && !isFinalQuestion && <button onClick={this.nextQuestion}>Next Question</button>}
+        
         {submited && isFinalQuestion && (
           <button onClick={() => alert(`You got ${correctAnswerCount} correct out of ${currentQuestionIndex + 1}`)}>
             {" "}
@@ -93,10 +94,10 @@ class Quiz extends Component {
     const { question, answers } = questions[currentQuestionIndex] || {};
     return (
       <div  className="body">
-        {this.difficultyBox()}
-        <p>
-          <bold>{question}</bold>
-        </p>
+        {/* {this.difficultyBox()} */}
+        {/* <p>
+          <strong>{question}</strong>
+        </p> */}
         {this.choicePicked()}
         
 
@@ -114,13 +115,13 @@ class Quiz extends Component {
         </form> */}
 
  {/* This Version doesn't work */}
-
+ <h2>{question}</h2>
 <form class="form" onSubmit={this.handleSubmit}>
-      <h2>{question}</h2>
-      {(answers || []).map(answer=>(
+      
+      {(answers || []).map((answer,index)=>( 
         <div class="inputGroup">
-    <input id="radio" name="radio" type="radio" onChange={this.handleAnswer}/>
-      <label for="radio">{answer}</label>
+    <input id={index} name="radio" type="radio" onChange={this.handleAnswer}  value={answer} checked={answer === currentAnswer}/>
+      <label for={index}>{answer}</label>
   </div>
 
       ))}

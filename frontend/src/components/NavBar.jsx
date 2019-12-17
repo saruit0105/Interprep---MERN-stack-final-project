@@ -34,7 +34,7 @@ const Component = ({ context, history }) => {
               <NavLink to="/landing" activeStyle={{ background: "tomato" }}>
                 Quiz
               </NavLink>
-            </li> */}
+            </li> 
             <li>
               <NavLink to="/ranking" activeStyle={{ background: "tomato" }}>
                 Ranking
