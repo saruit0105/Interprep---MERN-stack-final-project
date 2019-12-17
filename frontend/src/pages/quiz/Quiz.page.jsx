@@ -12,7 +12,10 @@ class Quiz extends Component {
     currentAnswer: "",
     currentSolution: "",
     correctAnswerCount: 0,
-    submited: false
+    submited: false,
+    pickingDifficulty: true,
+    difficultySubmitted: false,
+    difficulty: ""
   };
 
   componentDidMount() {
@@ -26,7 +29,11 @@ class Quiz extends Component {
     this.setState({ questions: data });
   };
 
-  handleAnswer = e => !this.state.submited && this.setState({ currentAnswer: e.target.value });
+  handleAnswer = e => {
+    if (!this.state.submited && !this.state.pickingDiffculty) {
+      this.setState({ currentAnswer: e.target.value });
+    }
+  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -64,12 +71,64 @@ class Quiz extends Component {
     return <p className={solutionClass}>{solutionLabel}</p>;
   };
 
-  render() {
-    const { questions, currentQuestionIndex, submited, currentAnswer, correctAnswerCount } = this.state;
-    const { question, answers } = questions[currentQuestionIndex] || {};
-    const isFinalQuestion = currentQuestionIndex === questions.length - 1;
+  handleDifficulty = (e, difficultyPicked) => {
+    e.preventDefault();
+    this.setState({
+      difficulty: difficultyPicked,
+      pickingDifficulty: !this.state.pickingDifficulty,
+      difficultySubmitted: !this.state.difficultySubmitted
+    });
+    console.log(this.state);
+  };
+
+  difficultyBox = () => {
+    const { difficultySubmitted } = this.state;
+    if (!difficultySubmitted) {
+      return (
+        <>
+          <h1> Please pick a difficulty</h1>
+          <button onClick={e => this.handleDifficulty(e, "easy")}> Easy </button>
+          <button onClick={e => this.handleDifficulty(e, "medium")}> Medium </button>
+          <button onClick={e => this.handleDifficulty(e, "hard")}> Difficult</button>
+        </>
+      );
+    }
+  };
+
+  finalQuestion = () => {
+    const { questions, currentQuestionIndex, submited, correctAnswerCount, difficulty } = this.state;
+    let isFinalQuestion;
+    if (difficulty === "easy") {
+      isFinalQuestion = currentQuestionIndex === 4;
+    } else if (difficulty === "medium") {
+      isFinalQuestion = currentQuestionIndex === 9;
+    } else if (difficulty === "hard") {
+      isFinalQuestion = currentQuestionIndex === 19;
+    } else isFinalQuestion = currentQuestionIndex === questions.length - 1;
     return (
       <div>
+        {submited && !isFinalQuestion && <button onClick={this.nextQuestion}>Next Question</button>}
+        {submited && isFinalQuestion && (
+          <button onClick={() => alert(`You got ${correctAnswerCount} correct out of ${currentQuestionIndex + 1}`)}>
+            {" "}
+            Finish{" "}
+          </button>
+        )}
+      </div>
+    );
+  };
+
+  addScore = () => {
+    const { currentQuestionIndex, correctAnswerCount } = this.state;
+    alert(`You got ${correctAnswerCount} correct out of ${currentQuestionIndex + 1}`);
+  };
+
+  render() {
+    const { questions, currentQuestionIndex, currentAnswer } = this.state;
+    const { question, answers } = questions[currentQuestionIndex] || {};
+    return (
+      <div>
+        {this.difficultyBox()}
         <p>
           <bold>{question}</bold>
         </p>
@@ -83,22 +142,7 @@ class Quiz extends Component {
           ))}
           <input type="submit" value="Submit!" />
         </form>
-
-      
-  
-  
-
-            
-
-
-
-
-        {submited && !isFinalQuestion && <button onClick={this.nextQuestion}>Next Question</button>}
-        {submited && isFinalQuestion && (
-          <button onClick={() => alert(`You got ${correctAnswerCount} correct out of ${questions.length}`)}>
-            Finish
-          </button>
-        )}
+        {this.finalQuestion()}
       </div>
     );
   }

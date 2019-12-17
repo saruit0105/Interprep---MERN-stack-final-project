@@ -34,7 +34,7 @@ const Component = ({ context, history }) => {
               <NavLink to="/landing" activeStyle={{ background: "tomato" }}>
                 Quiz
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/ranking" activeStyle={{ background: "tomato" }}>
                 Ranking
@@ -46,7 +46,9 @@ const Component = ({ context, history }) => {
               </NavLink>
             </li>
           </ul>
-          <button onClick={authHandler}>{authLabel}</button>
+          <button onClick={authHandler} className="loginButton">
+            {authLabel}
+          </button>
         </Nav>
       </Navbar>
     </div>
