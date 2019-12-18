@@ -29,6 +29,7 @@ class Quiz extends Component {
 
     const { match } = this.props;
     const { category, subcategory, difficulty = "" } = match.params;
+    // eslint-disable-next-line
     const { data } = await axios.get(`${baseURL}/api/questions/${category}/${subcategory}/${difficulty}`);
     this.setState({ questions: data });
     console.log(this.state);
