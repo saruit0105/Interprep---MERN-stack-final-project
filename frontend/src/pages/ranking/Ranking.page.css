@@ -2,12 +2,13 @@
   background-color: lightblue;
 }
 
-.body{
+.body {
   align-content: center;
   text-align: center;
   font-family: sans-serif;
-    
-  }
+}
 
-
-
+.badges {
+  height: 25px;
+  width: 25px;
+}
