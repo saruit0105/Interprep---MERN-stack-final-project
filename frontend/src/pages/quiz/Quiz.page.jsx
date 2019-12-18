@@ -78,7 +78,7 @@ class Quiz extends Component {
     const [solutionClass, solutionLabel] = correct
       ? ["correct", "wow you are right!"]
       : ["incorrect", `Sorry, that's the wrong answer, the correct answer is - ${currentSolution}`];
-    return <p className={solutionClass}>{solutionLabel}</p>;
+    return <h4 className={solutionClass}>{solutionLabel}</h4>;
   };
 
   finalQuestion = () => {
@@ -133,28 +133,14 @@ class Quiz extends Component {
     const { questions, currentQuestionIndex, currentAnswer } = this.state;
     const { question, answers } = questions[currentQuestionIndex] || {};
     return (
-      <div>
+      <div className= "body">
         <p>
           Question {this.state.counter} out of {this.state.questions.length}
         </p>
-        <p>
-          <bold>{question}</bold>
-        </p>
+        
         {this.choicePicked()}
 
-        {/* This Version works */}
-
-        {/* <form className="form" onSubmit={this.handleSubmit}>
-          {(answers || []).map(answer => (
-            <div className="answer">
-              <input checked={answer === currentAnswer}  name="radio" onChange={this.handleAnswer} type="radio" value={answer} />
-              {answer}
-            </div>
-          ))}
-          <input type="submit" value="Submit!" />
-        </form> */}
-
-        {/* This Version doesn't work */}
+      
         <h2>{question}</h2>
         <form class="form" onSubmit={this.handleSubmit}>
           {(answers || []).map((answer, index) => (
