@@ -4,6 +4,8 @@ import axios from "axios";
 import { baseURL } from "../../config";
 import "./Quiz.page.css";
 import { UserContext } from "../../context/UserContext";
+import "./Quiz.page.scss";
+
 class Quiz extends Component {
   static contextType = UserContext;
   state = {
@@ -128,15 +130,38 @@ class Quiz extends Component {
           <bold>{question}</bold>
         </p>
         {this.choicePicked()}
-        <form className="quiz-form" onSubmit={this.handleSubmit}>
+
+        {/* This Version works */}
+
+        {/* <form className="form" onSubmit={this.handleSubmit}>
           {(answers || []).map(answer => (
-            <div className="quiz-question">
-              <input checked={answer === currentAnswer} onChange={this.handleAnswer} type="radio" value={answer} />
+            <div className="answer">
+              <input checked={answer === currentAnswer}  name="radio" onChange={this.handleAnswer} type="radio" value={answer} />
               {answer}
             </div>
           ))}
           <input type="submit" value="Submit!" />
+        </form> */}
+
+        {/* This Version doesn't work */}
+        <h2>{question}</h2>
+        <form class="form" onSubmit={this.handleSubmit}>
+          {(answers || []).map((answer, index) => (
+            <div class="inputGroup">
+              <input
+                id={index}
+                name="radio"
+                type="radio"
+                onChange={this.handleAnswer}
+                value={answer}
+                checked={answer === currentAnswer}
+              />
+              <label for={index}>{answer}</label>
+            </div>
+          ))}
+          <input type="submit" value="Submit!" />
         </form>
+
         {this.finalQuestion()}
       </div>
     );
