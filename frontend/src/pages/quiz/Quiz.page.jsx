@@ -138,14 +138,13 @@ class Quiz extends Component {
     const { questions, currentQuestionIndex, currentAnswer } = this.state;
     const { question, answers } = questions[currentQuestionIndex] || {};
     return (
-      <div className= "body">
+      <div className="body">
         <p>
           Question {this.state.counter} out of {this.state.questions.length}
         </p>
-        
+
         {this.choicePicked()}
 
-      
         <h2>{question}</h2>
         <form class="form" onSubmit={this.handleSubmit}>
           {(answers || []).map((answer, index) => (
