@@ -46,10 +46,11 @@ const Component = ({ context, history }) => {
               </NavLink>
             </li>
           </ul>
-          <button onClick={authHandler} className="loginButton">
+          
+        </Nav>
+        <button onClick={authHandler} className="loginButton" style={{color:'white;'}}>
             {authLabel}
           </button>
-        </Nav>
       </Navbar>
     </div>
   );
