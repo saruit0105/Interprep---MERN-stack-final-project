@@ -18,7 +18,7 @@ const userSchema = new Schema({
   image: String,
   linkedin: String,
   github: String,
-  points: String,
+  points: { type: Number, default: 0 },
   followers: [{ type: Schema.Types.ObjectId, ref: "User" }]
 });
 
