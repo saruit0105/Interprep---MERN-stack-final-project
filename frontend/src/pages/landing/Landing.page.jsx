@@ -70,14 +70,14 @@ const Component = ({ context }) => {
   const { currentUser } = context;
   return (
     <div>
-      <header class="masthead bg-primary text-white text-center">
-        <div class="container d-flex align-items-center flex-column">
-          <img class="masthead-avatar mb-5" src={FISH_LOGO} alt="" />
-          <h1 class="masthead-heading text-uppercase mb-0">Welcome {currentUser.name}</h1>
-          <div class="divider-custom divider-light">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon">
-              <i class="fas fa-star"></i>
+      <header className="masthead bg-primary text-white text-center">
+        <div className="container d-flex align-items-center flex-column">
+          <img className="masthead-avatar mb-5" src={FISH_LOGO} alt="" />
+          <h1 className="masthead-heading text-uppercase mb-0">Welcome {currentUser.name}</h1>
+          <div className="divider-custom divider-light">
+            <div className="divider-custom-line"></div>
+            <div className="divider-custom-icon">
+              <i className="fas fa-star"></i>
             </div>
             <div className="divider-custom-line"></div>
           </div>
@@ -99,7 +99,7 @@ const Component = ({ context }) => {
 
           <div className="row">
             {links.map(({ label, path, category, picture }) => (
-              <div className="col-md-6 col-lg-4">
+              <div className="col-md-6 col-lg-4" key={label}>
                 <div className="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
                   <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                     <div className="portfolio-item-caption-content text-center text-white">
@@ -108,9 +108,11 @@ const Component = ({ context }) => {
                   </div>
                   <button className="picButton">
                     <h3 className="labels">{label}</h3>
-                    <img class="img-fluid" src={picture} alt="" />
+                    <img className="img-fluid" src={picture} alt="" />
                     {category.map(({ links, difficulty }) => (
-                      <Link to={`/quiz/${links}`}>{difficulty}</Link>
+                      <Link to={`/quiz/${links}`} key={links}>
+                        {difficulty}
+                      </Link>
                     ))}
                   </button>
                 </div>

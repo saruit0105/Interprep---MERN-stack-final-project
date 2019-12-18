@@ -5,8 +5,10 @@ import { baseURL } from "../../config";
 import "./Quiz.page.css";
 import { UserContext } from "../../context/UserContext";
 import "./Quiz.page.scss";
-import PERFECT_TROPHY from "../../images/reactTrophy.png";
-import TROPHY from "../../images/JSTrophy.png";
+import PERFECT_JS_TROPHY from "../../images/PerfectJS.png";
+import SECOND_JS_TROPHY from "../../images/SecondJS.png";
+import PERFECT_REACT_TROPHY from "../../images/PerfectReact.png";
+import SECOND_REACT_TROPHY from "../../images/SecondReact.png";
 class Quiz extends Component {
   static contextType = UserContext;
   state = {
@@ -17,7 +19,9 @@ class Quiz extends Component {
     correctAnswerCount: 0,
     submited: false,
     counter: 1,
-    done: false
+    done: false,
+    difficulty: "",
+    subcategory: ""
   };
 
   componentDidMount() {
@@ -31,7 +35,7 @@ class Quiz extends Component {
     const { category, subcategory, difficulty = "" } = match.params;
     // eslint-disable-next-line
     const { data } = await axios.get(`${baseURL}/api/questions/${category}/${subcategory}/${difficulty}`);
-    this.setState({ questions: data });
+    this.setState({ questions: data, difficulty: difficulty, subcategory: subcategory });
     console.log(this.state);
     console.log(currentUser);
     this.setState({
@@ -99,26 +103,42 @@ class Quiz extends Component {
   };
 
   handleFinalClick = () => {
-    const { currentQuestionIndex, correctAnswerCount, done, questions } = this.state;
+    const { currentQuestionIndex, correctAnswerCount, done, questions, difficulty, subcategory } = this.state;
     const { currentUser } = this.context;
     let { badges } = currentUser;
     let { points } = currentUser;
     if (correctAnswerCount / questions.length === 1) {
-      points = points + 5;
-      badges = PERFECT_TROPHY;
+      if (difficulty === "hard") {
+        points = points + 10;
+        alert("this is a perfect score, you have been awarded 10 points");
+      } else if (difficulty === "medium") {
+        points = points + 5;
+        alert("this is a perfect score, you have been awarded 5 points");
+      } else {
+        points = points + 2;
+        alert("this is a perfect score, you have been awarded 2 points");
+      }
+      subcategory === "general" ? (badges = PERFECT_JS_TROPHY) : (badges = PERFECT_REACT_TROPHY);
       currentUser.points = points;
       currentUser.badges = [...currentUser.badges, badges];
-      alert("this is a perfect score, you have been awarded 5 points");
       this.handleUpdate(currentUser);
-    } else if (correctAnswerCount / questions.length > 0.78) {
-      points = points + 3;
-      badges = TROPHY;
+    } else if (correctAnswerCount / questions.length >= 0.8) {
+      if (difficulty === "hard") {
+        points = points + 8;
+        alert("You passed but there is room for improvement, you have been awarded 8 points");
+      } else if (difficulty === "medium") {
+        points = points + 4;
+        alert("You passed but there is room for improvement, you have been awarded 4 points");
+      } else {
+        points = points + 1;
+        alert("You passed but there is room for improvement, you have been awarded 1 points");
+      }
+      subcategory === "general" ? (badges = SECOND_JS_TROPHY) : (badges = SECOND_REACT_TROPHY);
       currentUser.points = points;
       currentUser.badges = [...currentUser.badges, badges];
-      alert("You passed but there is room for improvement, you got 3 points");
       this.handleUpdate(currentUser);
     } else {
-      alert(`You got ${correctAnswerCount} correct out of ${currentQuestionIndex + 1}`);
+      alert(`You only got ${correctAnswerCount} correct out of ${currentQuestionIndex + 1}, please try again. `);
     }
     this.setState({ done: !done });
   };
@@ -146,9 +166,9 @@ class Quiz extends Component {
         {this.choicePicked()}
 
         <h2>{question}</h2>
-        <form class="form" onSubmit={this.handleSubmit}>
+        <form className="form" onSubmit={this.handleSubmit}>
           {(answers || []).map((answer, index) => (
-            <div class="inputGroup">
+            <div className="inputGroup">
               <input
                 id={index}
                 name="radio"
