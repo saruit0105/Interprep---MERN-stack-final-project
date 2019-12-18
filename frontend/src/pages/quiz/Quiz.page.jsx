@@ -5,7 +5,8 @@ import { baseURL } from "../../config";
 import "./Quiz.page.css";
 import { UserContext } from "../../context/UserContext";
 import "./Quiz.page.scss";
-
+import PERFECT_TROPHY from "../../images/reactTrophy.png";
+import TROPHY from "../../images/JSTrophy.png";
 class Quiz extends Component {
   static contextType = UserContext;
   state = {
@@ -100,17 +101,21 @@ class Quiz extends Component {
   handleFinalClick = () => {
     const { currentQuestionIndex, correctAnswerCount, done, questions } = this.state;
     const { currentUser } = this.context;
+    let { badges } = currentUser;
     let { points } = currentUser;
-    console.log(currentUser);
     if (correctAnswerCount / questions.length === 1) {
       points = points + 5;
-      console.log(points);
-      // this.setState({
-      //   points: points
-      // });
+      badges = PERFECT_TROPHY;
       currentUser.points = points;
-      console.log(currentUser);
-      alert("this is a perfect score, you have been awarded 10 points");
+      currentUser.badges = [...currentUser.badges, badges];
+      alert("this is a perfect score, you have been awarded 5 points");
+      this.handleUpdate(currentUser);
+    } else if (correctAnswerCount / questions.length > 0.78) {
+      points = points + 3;
+      badges = TROPHY;
+      currentUser.points = points;
+      currentUser.badges = [...currentUser.badges, badges];
+      alert("You passed but there is room for improvement, you got 3 points");
       this.handleUpdate(currentUser);
     } else {
       alert(`You got ${correctAnswerCount} correct out of ${currentQuestionIndex + 1}`);
@@ -133,14 +138,13 @@ class Quiz extends Component {
     const { questions, currentQuestionIndex, currentAnswer } = this.state;
     const { question, answers } = questions[currentQuestionIndex] || {};
     return (
-      <div className= "body">
+      <div className="body">
         <p>
           Question {this.state.counter} out of {this.state.questions.length}
         </p>
-        
+
         {this.choicePicked()}
 
-      
         <h2>{question}</h2>
         <form class="form" onSubmit={this.handleSubmit}>
           {(answers || []).map((answer, index) => (

@@ -41,10 +41,11 @@ class Ranking extends Component {
               <th>Name</th>
               <th>Points</th>
               <th>Follow</th>
+              <th>Badges</th>
             </tr>
           </thead>
           <tbody>
-            {users.map(({ _id, name, points, followers }, index) => {
+            {users.map(({ _id, name, points, followers, badges }, index) => {
               const isCurrentUser = currentUser._id === _id;
               const alreadyFollowing = followers.some(id => currentUser._id === id);
               return (
@@ -58,6 +59,7 @@ class Ranking extends Component {
                     {!isCurrentUser && !alreadyFollowing && <button onClick={this.follow(_id)}>Follow!</button>}
                     {!isCurrentUser && alreadyFollowing && <button disabled>Following</button>}
                   </td>
+                  <td>{badges && badges.map(eachBadge => <img src={eachBadge} className="badges" />)}</td>
                 </tr>
               );
             })}

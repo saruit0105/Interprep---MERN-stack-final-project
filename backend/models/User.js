@@ -19,6 +19,7 @@ const userSchema = new Schema({
   linkedin: String,
   github: String,
   points: { type: Number, default: 0 },
+  badges: [{ type: String }],
   followers: [{ type: Schema.Types.ObjectId, ref: "User" }]
 });
 
