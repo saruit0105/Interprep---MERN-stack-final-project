@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter, NavLink } from "react-router-dom";
+import { withRouter, NavLink, Router } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import { Nav } from "react-bootstrap";
 import "./NavBar.css";
@@ -24,6 +24,7 @@ const Component = ({ context, history }) => {
           Bananafish
         </Navbar.Brand>
         <Nav className="mr-auto">
+          {/* <Router> */}
           <ul className="navList">
             <li>
               <NavLink to="/about" activeStyle={{ background: "tomato" }}>
@@ -34,7 +35,7 @@ const Component = ({ context, history }) => {
               <NavLink to="/landing" activeStyle={{ background: "tomato" }}>
                 Quiz
               </NavLink>
-            </li> 
+            </li>
             <li>
               <NavLink to="/ranking" activeStyle={{ background: "tomato" }}>
                 Ranking
@@ -45,12 +46,17 @@ const Component = ({ context, history }) => {
                 Followers
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/profile" activeStyle={{ background: "tomato" }}>
+                Profile
+              </NavLink>
+            </li>
           </ul>
-          
+          {/* </Router> */}
         </Nav>
-        <button onClick={authHandler} className="loginButton" style={{color:'white;'}}>
-            {authLabel}
-          </button>
+        <button onClick={authHandler} className="loginButton" style={{ color: "white;" }}>
+          {authLabel}
+        </button>
       </Navbar>
     </div>
   );

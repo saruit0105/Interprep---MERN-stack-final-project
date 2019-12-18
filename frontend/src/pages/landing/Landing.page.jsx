@@ -67,7 +67,6 @@ const links = [
 
 class Landing extends Component {
   static contextType = UserContext;
-
   render() {
     const { currentUser } = this.context;
     return (

@@ -1,11 +1,10 @@
-import React, { Component } from "react";
 import { UserContext } from "../../context/UserContext";
 import { baseURL } from "../../config";
 import "./Profile.page.css";
 import Linkedin from "./Linkedin";
 import Github from "./Github";
 import axios from "axios";
-
+import React, { Component } from "react";
 class Profile extends Component {
   static contextType = UserContext;
   state = {
@@ -56,6 +55,7 @@ class Profile extends Component {
   };
 
   render() {
+    console.log(this);
     const { currentUser } = this.context;
     const { gitEditing, linkEditing, linkInput, gitInput } = this.state;
     const { name, email, linkedin, github } = currentUser;
