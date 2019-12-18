@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter, NavLink, Router } from "react-router-dom";
+import { withRouter, NavLink } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import { Nav } from "react-bootstrap";
 import "./NavBar.css";
@@ -24,7 +24,6 @@ const Component = ({ context, history }) => {
           Bananafish
         </Navbar.Brand>
         <Nav className="mr-auto">
-          {/* <Router> */}
           <ul className="navList">
             <li>
               <NavLink to="/about" activeStyle={{ background: "tomato" }}>
@@ -52,7 +51,6 @@ const Component = ({ context, history }) => {
               </NavLink>
             </li>
           </ul>
-          {/* </Router> */}
         </Nav>
         <button onClick={authHandler} className="loginButton" style={{ color: "white;" }}>
           {authLabel}
