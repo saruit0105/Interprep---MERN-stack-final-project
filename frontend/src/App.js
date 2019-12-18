@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Home, Profile, About, Landing, Quiz, Ranking, Followers, Test } from "./pages";
+import { Home, Profile, About, Landing, Quiz, Ranking, Followers } from "./pages";
 import { NavBar, AuthRoute } from "./components";
 import "./App.css";
 
