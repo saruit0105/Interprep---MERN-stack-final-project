@@ -22,6 +22,7 @@ class Quiz extends Component {
   fetchQuestions = async () => {
     const { match } = this.props;
     const { category, subcategory, difficulty = "" } = match.params;
+    // eslint-disable-next-line
     const { data } = await axios.get(`${baseURL}/api/questions/${category}/${subcategory}/${difficulty}`);
     this.setState({ questions: data });
     console.log(this.state);
@@ -68,7 +69,7 @@ class Quiz extends Component {
   };
 
   finalQuestion = () => {
-    const { questions, currentQuestionIndex, submited, correctAnswerCount, difficulty } = this.state;
+    const { questions, currentQuestionIndex, submited, correctAnswerCount,  } = this.state;
     let isFinalQuestion = currentQuestionIndex === questions.length - 1;
     return (
       <div>
