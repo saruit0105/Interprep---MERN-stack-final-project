@@ -94,17 +94,18 @@ class Quiz extends Component {
   handleFinalClick = () => {
     const { currentQuestionIndex, correctAnswerCount, done, questions } = this.state;
     const { currentUser } = this.context;
-    const { points } = currentUser;
+    let { points } = currentUser;
     if (correctAnswerCount / questions.length === 1) {
+      points = points + 5;
       alert("this is a perfect score, you have been awarded 10 points");
-      this.handleUpdate(points + 5);
+      this.handleUpdate(points);
     } else {
       alert(`You got ${correctAnswerCount} correct out of ${currentQuestionIndex + 1}`);
     }
     this.setState({ done: !done });
   };
 
-  handleUpdate = async formData => {
+  handleUpdate = async updatedData => {
     await axios.post(`${baseURL}/api/update`, updatedData, { withCredentials: true });
   };
 
