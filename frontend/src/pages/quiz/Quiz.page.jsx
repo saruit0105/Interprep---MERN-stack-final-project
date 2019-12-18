@@ -17,6 +17,7 @@ class Quiz extends Component {
     currentAnswer: "",
     currentSolution: "",
     correctAnswerCount: 0,
+    answerPicked: false,
     submited: false,
     counter: 1,
     done: false,
@@ -33,7 +34,6 @@ class Quiz extends Component {
 
     const { match } = this.props;
     const { category, subcategory, difficulty = "" } = match.params;
-    // eslint-disable-next-line
     const { data } = await axios.get(`${baseURL}/api/questions/${category}/${subcategory}/${difficulty}`);
     this.setState({ questions: data, difficulty: difficulty, subcategory: subcategory });
     console.log(this.state);
@@ -44,20 +44,22 @@ class Quiz extends Component {
   };
 
   handleAnswer = e => {
-    !this.state.submited && this.setState({ currentAnswer: e.target.value });
+    !this.state.submited && this.setState({ currentAnswer: e.target.value, answerPicked: !this.state.answerPicked });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    const { questions, currentQuestionIndex, currentAnswer, correctAnswerCount } = this.state;
-    const { solution } = questions[currentQuestionIndex] || {};
-    const correct = solution === currentAnswer;
-    this.setState({
-      submited: true,
-      correct,
-      currentSolution: solution,
-      ...(correct && { correctAnswerCount: correctAnswerCount + 1 })
-    });
+    if (this.state.answerPicked) {
+      const { questions, currentQuestionIndex, currentAnswer, correctAnswerCount } = this.state;
+      const { solution } = questions[currentQuestionIndex] || {};
+      const correct = solution === currentAnswer;
+      this.setState({
+        submited: true,
+        correct,
+        currentSolution: solution,
+        ...(correct && { correctAnswerCount: correctAnswerCount + 1 })
+      });
+    }
   };
 
   nextQuestion = () => {
@@ -146,8 +148,6 @@ class Quiz extends Component {
   handleUpdate = async updatedData => {
     await axios.post(`${baseURL}/api/update`, updatedData, { withCredentials: true });
   };
-
-  handleHomeClick = () => {};
 
   addScore = () => {
     const { currentQuestionIndex, correctAnswerCount } = this.state;
