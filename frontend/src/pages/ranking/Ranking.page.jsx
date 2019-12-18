@@ -50,7 +50,7 @@ class Ranking extends Component {
               const alreadyFollowing = followers.some(id => currentUser._id === id);
               return (
                 <tr>
-                  <td>{index}</td>
+                  <td>{index+1}</td>
                   <td className={classNames("user", { currentUser: isCurrentUser })}>
                     <strong>{name}</strong>
                   </td>
