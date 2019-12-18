@@ -46,8 +46,9 @@ router.post("/login", async (req, res, next) => {
 //update user
 
 router.post("/update", async (req, res, next) => {
+  console.log(req.session, ">>>>>>>");
   try {
-    const id = req.currentUser._id;
+    const id = req.session.currentUser._id;
     const updatedUser = await User.findByIdAndUpdate(id, req.body, {
       new: true
     });
@@ -62,12 +63,14 @@ router.get("/get-user-info", async (req, res) => res.send(req.session.currentUse
 
 router.get("/users", async (_, res) => {
   const users = await User.find();
-  const sortedUsers = users.sort((a, b) => {
-    const aValue = a.points;
-    const bValue = b.points;
+  let sortedUsers = users.sort((a, b) => {
+    let aValue = a.points;
+    let bValue = b.points;
     if (aValue === bValue) return 0;
-    return aValue > bValue ? 1 : -1;
+    return aValue > bValue ? -1 : 1;
   });
+  console.log(users, "users");
+  console.log(sortedUsers, "sortedUsers");
   res.send(sortedUsers);
 });
 
