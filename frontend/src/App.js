@@ -1,14 +1,13 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Home, Profile, About, Landing, Quiz, Ranking, Followers,Test } from "./pages";
-import { NavBar, AuthRoute, NewLanding } from "./components";
+import { Home, Profile, About, Landing, Quiz, Ranking, Followers, Test } from "./pages";
+import { NavBar, AuthRoute } from "./components";
 import "./App.css";
 
 const App = () => (
   <div>
     <NavBar />
     <Switch>
-      <Route path="/new" component={NewLanding} />
       <Route path="/about" component={About} />
       <Route exact path="/" component={Home} />
       <AuthRoute exact path="/quiz/:category?/:subcategory?/:difficulty?" component={Quiz} />
@@ -16,7 +15,6 @@ const App = () => (
       <AuthRoute path="/profile" component={Profile} />
       <AuthRoute path="/ranking" component={Ranking} />
       <AuthRoute path="/followers" component={Followers} />
-      <Route path="/test" component={Test}/>
     </Switch>
   </div>
 );

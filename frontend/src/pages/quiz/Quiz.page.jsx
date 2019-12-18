@@ -70,7 +70,8 @@ class Quiz extends Component {
       correct: false,
       currentQuestionIndex: prevState.currentQuestionIndex + 1,
       submited: false,
-      counter: nextCount
+      counter: nextCount,
+      answerPicked: false
     }));
   };
 

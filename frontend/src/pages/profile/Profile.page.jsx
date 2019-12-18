@@ -1,79 +1,142 @@
 import React, { Component } from "react";
 import { UserContext } from "../../context/UserContext";
+import { baseURL } from "../../config";
 import "./Profile.page.css";
+import Linkedin from "./Linkedin";
+import Github from "./Github";
+import axios from "axios";
 
 class Profile extends Component {
   static contextType = UserContext;
+  state = {
+    linkEditing: false,
+    GitEditing: false,
+    gitInput: "",
+    linkInput: ""
+  };
+
+  handleGitEditing = e => {
+    console.log(e.target.value);
+    e.preventDefault();
+    this.setState({ gitEditing: !this.state.gitEditing });
+  };
+  handleGitChange = e => {
+    console.log(e.target.value);
+    e.preventDefault();
+    this.setState({ gitInput: e.target.value }, () => {
+      console.log(this.state.gitInput);
+    });
+  };
+
+  handleLinkEditing = e => {
+    e.preventDefault();
+    this.setState({ linkEditing: !this.state.linkEditing });
+  };
+
+  handleLinkChange = e => {
+    console.log(e.target.value);
+    e.preventDefault();
+    this.setState({ linkInput: e.target.value }, () => {
+      console.log(this.state.linkInput);
+    });
+  };
+
+  updateUser = e => {
+    e.preventDefault();
+    console.log(this.state);
+    const { currentUser } = this.context;
+    let { gitInput, linkInput } = this.state;
+    currentUser.linkedin = linkInput;
+    currentUser.github = gitInput;
+    this.handleUpdate(currentUser);
+  };
+
+  handleUpdate = async updatedData => {
+    await axios.post(`${baseURL}/api/update`, updatedData, { withCredentials: true });
+  };
 
   render() {
     const { currentUser } = this.context;
-    const { name, email } = currentUser;
+    const { gitEditing, linkEditing, linkInput, gitInput } = this.state;
+    const { name, email, linkedin, github } = currentUser;
     return (
       <div>
-        <div class="container emp-profile ">
-          <form method="post">
-            <div class="col-md-6">
-              <div class="profile-head">
-                <h5>{currentUser.name}</h5>
-                <h6>Web Developer and Designer</h6>
+        <div className="container emp-profile ">
+          <div className="col-md-6">
+            <div className="profile-head">
+              <h5>{currentUser.name}</h5>
+              <h6>Web Developer and Designer</h6>
 
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <li class="nav-item">
-                    <a
-                      class="nav-link active"
-                      id="home-tab"
-                      data-toggle="tab"
-                      href="#home"
-                      role="tab"
-                      aria-controls="home"
-                      aria-selected="true"
-                    >
-                      About
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <ul className="nav nav-tabs" id="myTab" role="tablist">
+                <li className="nav-item">
+                  <a
+                    className="nav-link active"
+                    id="home-tab"
+                    data-toggle="tab"
+                    href="#home"
+                    role="tab"
+                    aria-controls="home"
+                    aria-selected="true"
+                  >
+                    About
+                  </a>
+                </li>
+              </ul>
             </div>
-            <br></br>
+          </div>
+          <br></br>
 
-            <div class="col-md-8">
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Name</label>
-                </div>
-                <div class="col-md-6">
-                  <input type="text" placeholder={name}></input>
-                </div>
+          <div className="col-md-8">
+            <div className="row">
+              <div className="col-md-6">
+                <label>Name</label>
               </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Email</label>
-                </div>
-                <div class="col-md-6">
-                  <p>{email}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Github</label>
-                </div>
-                <div class="col-md-6">
-                  <input type="text" placeholder=""></input>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Linkedin</label>
-                </div>
-                <div class="col-md-6">
-                  <input type="text" placeholder=""></input>
-                </div>
+              <div className="col-md-6">
+                <p>{name}</p>
               </div>
             </div>
-            <div class="col-md-2">
-              <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+            <div className="row">
+              <div className="col-md-6">
+                <label>Email</label>
+              </div>
+              <div className="col-md-6">
+                <p>{email}</p>
+              </div>
             </div>
-          </form>
+            <div className="row">
+              <div className="col-md-6">
+                <label>Github</label>
+              </div>
+              <div className="col-md-6">
+                <Github
+                  gitEditing={gitEditing}
+                  handleGitChange={this.handleGitChange}
+                  gitInput={gitInput}
+                  userGithub={github}
+                />
+                <button onClick={this.handleGitEditing}>
+                  {gitEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
+                </button>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-6">
+                <label>Linkedin</label>
+              </div>
+              <div className="col-md-6">
+                <Linkedin
+                  linkEditing={linkEditing}
+                  handleLinkChange={this.handleLinkChange}
+                  linkInput={linkInput}
+                  userLinkedin={linkedin}
+                />
+                <button onClick={this.handleLinkEditing}>
+                  {linkEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-2"></div>
         </div>
       </div>
     );

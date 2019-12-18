@@ -3,4 +3,3 @@ export { default as NavBar } from "./NavBar";
 export { default as Signup } from "./Signup";
 export { default as ShortAnswers } from "./ShortAnswers";
 export { default as AuthRoute } from "./AuthRoute";
-export { default as NewLanding } from "./NewLanding";
