@@ -32,6 +32,9 @@ class Quiz extends Component {
     this.setState({ questions: data });
     console.log(this.state);
     console.log(currentUser);
+    this.setState({
+      points: currentUser.points
+    });
   };
 
   handleAnswer = e => {
@@ -97,10 +100,17 @@ class Quiz extends Component {
     const { currentQuestionIndex, correctAnswerCount, done, questions } = this.state;
     const { currentUser } = this.context;
     let { points } = currentUser;
+    console.log(currentUser);
     if (correctAnswerCount / questions.length === 1) {
       points = points + 5;
+      console.log(points);
+      // this.setState({
+      //   points: points
+      // });
+      currentUser.points = points;
+      console.log(currentUser);
       alert("this is a perfect score, you have been awarded 10 points");
-      this.handleUpdate(points);
+      this.handleUpdate(currentUser);
     } else {
       alert(`You got ${correctAnswerCount} correct out of ${currentQuestionIndex + 1}`);
     }
