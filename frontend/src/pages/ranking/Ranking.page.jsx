@@ -34,28 +34,6 @@ class Ranking extends Component {
     const { currentUser } = this.context;
     return (
       <div className="body">
-        {/* <h2>Ranking Page</h2>
-        {users.map(({ _id, name, points, followers }) => {
-          const isCurrentUser = currentUser._id === _id;
-          const alreadyFollowing = followers.some(id => currentUser._id === id);
-          return (
-            <div className={classNames("user", { currentUser: isCurrentUser })}>
-              <p>
-              <span> 
-              {!isCurrentUser && !alreadyFollowing && <button onClick={this.follow(_id)} >Follow!</button>}
-                <strong>
-                  {name}
-                </strong>  - {points || 0}
-                 </span>
-              
-              </p>
-              
-            </div>
-          );
-        })}
-
-
- */}
         <Table striped bordered hover>
           <thead>
             <tr>
