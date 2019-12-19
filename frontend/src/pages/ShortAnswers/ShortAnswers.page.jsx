@@ -5,7 +5,9 @@ import { baseURL } from "../../config";
 
 export default class ShortAnswers extends Component {
   state = {
-    questions: null
+    userAnswer: "",
+    questions: [],
+    currentQuestionIndex: 0
   };
 
   componentDidMount() {
@@ -23,15 +25,17 @@ export default class ShortAnswers extends Component {
   };
 
   render() {
+    const { userAnswer, questions, currentQuestionIndex } = this.state;
+    const { question, answer } = questions[currentQuestionIndex] || {};
     return (
       <div>
-        <p> Question 1 out of 5</p>
+        <p> Question 1 out of {questions.length} </p>
 
         <strong>Short Answer Question</strong>
         <div className="questionBox">
           <Form>
             <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Label>What is the meaning of Life?</Form.Label>
+              <Form.Label>{question}</Form.Label>
               <Form.Control as="textarea" rows="3" />
             </Form.Group>
           </Form>
@@ -41,7 +45,7 @@ export default class ShortAnswers extends Component {
             </button>
           </div>
           <div id="banana" style={{ display: "none" }}>
-            the Meaning of life is to make a cool final project so Tommy can get you a job at carecloud
+            {answer}
           </div>
         </div>
       </div>

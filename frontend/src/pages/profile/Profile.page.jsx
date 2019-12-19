@@ -172,7 +172,6 @@ class Profile extends Component {
                     {linkEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
                   </button>
                 </div>
-                {/* <svg viewBox=" 0 0 100 100"></svg> */}
               </li>
               <li>
                 <a href={github}>
@@ -189,7 +188,6 @@ class Profile extends Component {
                     {gitEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
                   </button>
                 </div>
-                {/* <svg viewBox=" 0 0 100 100"></svg> */}
               </li>
             </ul>
           </aside>
