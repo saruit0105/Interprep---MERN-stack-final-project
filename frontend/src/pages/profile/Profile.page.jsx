@@ -111,15 +111,15 @@ class Profile extends Component {
       //           <label>Github</label>
       //         </div>
       //         <div className="col-md-6">
-      //           <Github
-      //             gitEditing={gitEditing}
-      //             handleGitChange={this.handleGitChange}
-      //             gitInput={gitInput}
-      //             userGithub={github}
-      //           />
-      //           <button onClick={this.handleGitEditing}>
-      //             {gitEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
-      //           </button>
+      // <Github
+      //   gitEditing={gitEditing}
+      //   handleGitChange={this.handleGitChange}
+      //   gitInput={gitInput}
+      //   userGithub={github}
+      // />
+      // <button onClick={this.handleGitEditing}>
+      //   {gitEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
+      // </button>
       //         </div>
       //       </div>
       //       <div className="row">
@@ -127,15 +127,15 @@ class Profile extends Component {
       //           <label>Linkedin</label>
       //         </div>
       //         <div className="col-md-6">
-      //           <Linkedin
-      //             linkEditing={linkEditing}
-      //             handleLinkChange={this.handleLinkChange}
-      //             linkInput={linkInput}
-      //             userLinkedin={linkedin}
-      //           />
-      //           <button onClick={this.handleLinkEditing}>
-      //             {linkEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
-      //           </button>
+      // <Linkedin
+      //   linkEditing={linkEditing}
+      //   handleLinkChange={this.handleLinkChange}
+      //   linkInput={linkInput}
+      //   userLinkedin={linkedin}
+      // />
+      // <button onClick={this.handleLinkEditing}>
+      //   {linkEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
+      // </button>
       //         </div>
       //       </div>
       //     </div>
@@ -144,65 +144,53 @@ class Profile extends Component {
       // </div>
 
       <div>
-            <div className="dababy">
-            <aside class="profile-card ">
-            
-                <header>
-                
-                    
-                    
-                <a href="https://www.linkedin.com/in/johnnnyn/">
-            <img src={FISH_LOGO} alt=""/>
-        </a>
-                    
-                    
-                    
-                    <h1>{currentUser.name}</h1>
-                    
-                    
-                    <h2>Web Developer</h2>
-                
-                </header>
-            
-                
-                {/* <div class="profile-bio">
-                
-                    <p>Even when everything is perfect, you can always make it better. Break barriers in your head, create something crazy and don't forget Code is Poetry...</p>
-                
-                </div> */}
-            
-               
-                <ul class="profile-social-links">
-                    
-                    
-                    <li>
-                        <a href="https://www.facebook.com/v1ctory">
-                            <img src={LINKEDIN_LOGO } alt=""/>
-                            {/* <svg viewBox=" 0 0 100 100"></svg> */}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.facebook.com/v1ctory">
-                            <img src={GITHUB_LOGO } alt=""/>
-                            {/* <svg viewBox=" 0 0 100 100"></svg> */}
-                        </a>
-                    </li>
-                    
-                    
-                   
-                    
-                    
-                
-                </ul>
-            
-            </aside>
-            </div>
-            </div>
+        <div className="dababy">
+          <aside class="profile-card ">
+            <header>
+              <a href="{linkedin}">
+                <img src={FISH_LOGO} alt="" />
+              </a>
 
+              <h1>{name}</h1>
 
+              <h2>Web Developer</h2>
+            </header>
 
-
-
+            <ul class="profile-social-links">
+              <li>
+                <a href={linkedin}>
+                  <img src={LINKEDIN_LOGO} alt="" className="linkPics" />
+                </a>
+                <Linkedin
+                  linkEditing={linkEditing}
+                  handleLinkChange={this.handleLinkChange}
+                  linkInput={linkInput}
+                  userLinkedin={linkedin}
+                />
+                <button onClick={this.handleLinkEditing}>
+                  {linkEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
+                </button>
+                {/* <svg viewBox=" 0 0 100 100"></svg> */}
+              </li>
+              <li>
+                <a href={github}>
+                  <img src={GITHUB_LOGO} alt="" className="linkPics" />
+                </a>
+                <Github
+                  gitEditing={gitEditing}
+                  handleGitChange={this.handleGitChange}
+                  gitInput={gitInput}
+                  userGithub={github}
+                />
+                <button onClick={this.handleGitEditing}>
+                  {gitEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
+                </button>
+                {/* <svg viewBox=" 0 0 100 100"></svg> */}
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
     );
   }
 }
