@@ -189,6 +189,9 @@ app.post("/seed", async () => {
 const UserRoutes = require("./routes/UserRoutes");
 app.use("/api", UserRoutes);
 
+const OpenQuestionRoutes = require("./routes/OpenQuestionRoutes");
+app.use("/api", OpenQuestionRoutes);
+
 const QuestionRoutes = require("./routes/QuestionRoutes");
 app.use("/api", QuestionRoutes);
 
