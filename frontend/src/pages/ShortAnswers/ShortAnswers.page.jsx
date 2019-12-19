@@ -24,6 +24,11 @@ export default class ShortAnswers extends Component {
     this.setState({ questions: data }, () => console.log(this.state));
   };
 
+  handleFormInput = e => {
+    e.preventDefault();
+    this.setState({ userAnswer: e.target.value });
+  };
+
   nextQuestion = () => {
     let nextCount = this.state.counter + 1;
     this.setState(prevState => ({
@@ -67,7 +72,7 @@ export default class ShortAnswers extends Component {
 
   render() {
     const { userAnswer, questions, currentQuestionIndex, counter } = this.state;
-    const { question, answer } = questions[currentQuestionIndex] || {};
+    const { question } = questions[currentQuestionIndex] || {};
     return (
       <div className="body">
         <div>
@@ -76,13 +81,11 @@ export default class ShortAnswers extends Component {
           </p>
 
           <div className="questionBox">
-            <Form className="form">
-              <Form.Group controlId="exampleForm.ControlTextarea1">
-                <Form.Label>{question}</Form.Label>
-                <Form.Control as="textarea" rows="3" />
-              </Form.Group>
-            </Form>
+            <Form.Label>{question}</Form.Label>
             <div>
+              <Form>
+                <input type="text" onChange={this.handleFormInput} />
+              </Form>
               <button onClick={this.handleAnswerSubmit}>submit</button>
               {this.finalQuestion()}
             </div>
