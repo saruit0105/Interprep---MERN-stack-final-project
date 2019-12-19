@@ -161,30 +161,34 @@ class Profile extends Component {
                 <a href={linkedin}>
                   <img src={LINKEDIN_LOGO} alt="" className="linkPics" />
                 </a>
-                <Linkedin
-                  linkEditing={linkEditing}
-                  handleLinkChange={this.handleLinkChange}
-                  linkInput={linkInput}
-                  userLinkedin={linkedin}
-                />
-                <button onClick={this.handleLinkEditing}>
-                  {linkEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
-                </button>
+                <div>
+                  <Linkedin
+                    linkEditing={linkEditing}
+                    handleLinkChange={this.handleLinkChange}
+                    linkInput={linkInput}
+                    userLinkedin={linkedin}
+                  />
+                  <button onClick={this.handleLinkEditing}>
+                    {linkEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
+                  </button>
+                </div>
                 {/* <svg viewBox=" 0 0 100 100"></svg> */}
               </li>
               <li>
                 <a href={github}>
                   <img src={GITHUB_LOGO} alt="" className="linkPics" />
                 </a>
-                <Github
-                  gitEditing={gitEditing}
-                  handleGitChange={this.handleGitChange}
-                  gitInput={gitInput}
-                  userGithub={github}
-                />
-                <button onClick={this.handleGitEditing}>
-                  {gitEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
-                </button>
+                <div>
+                  <Github
+                    gitEditing={gitEditing}
+                    handleGitChange={this.handleGitChange}
+                    gitInput={gitInput}
+                    userGithub={github}
+                  />
+                  <button onClick={this.handleGitEditing}>
+                    {gitEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
+                  </button>
+                </div>
                 {/* <svg viewBox=" 0 0 100 100"></svg> */}
               </li>
             </ul>
