@@ -52,7 +52,7 @@ const Component = ({ context, history }) => {
             </li>
           </ul>
         </Nav>
-        <button onClick={authHandler} className="loginButton" style={{ color: "white;" }}>
+        <button onClick={authHandler} className="loginButton" style={{ color: "white" }}>
           {authLabel}
         </button>
       </Navbar>

@@ -1,4 +1,5 @@
 import React from "react";
+import './About.page.css'
 
 const team = [
   {
@@ -13,14 +14,16 @@ const team = [
 
 const About = () => (
   <div>
-    <header className="bg-primary text-center py-5 mb-4">
+    <header className="bg-secondary text-center py-2 mb-4">
       <div className="container">
         <h1 className="font-weight-light text-white">Meet the Team</h1>
       </div>
     </header>
+    <div className="container">
+    <div className="row">
     {team.map(({ name, position }) => (
-      <div className="container">
-        <div className="row">
+      
+        
           <div className="col-xl-3 col-md-6 mb-4">
             <div className="card border-0 shadow">
               <img
@@ -34,9 +37,11 @@ const About = () => (
               </div>
             </div>
           </div>
-        </div>
-      </div>
+       
+      
     ))}
+     </div>
+    </div>
   </div>
 );
 

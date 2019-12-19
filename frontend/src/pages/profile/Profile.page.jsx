@@ -145,7 +145,7 @@ class Profile extends Component {
 
       <div>
         <div className="dababy">
-          <aside class="profile-card ">
+          <aside className="profile-card ">
             <header>
               <a href="{linkedin}">
                 <img src={FISH_LOGO} alt="" />
@@ -156,7 +156,7 @@ class Profile extends Component {
               <h2>Web Developer</h2>
             </header>
 
-            <ul class="profile-social-links">
+            <ul className="profile-social-links">
               <li>
                 <a href={linkedin}>
                   <img src={LINKEDIN_LOGO} alt="" className="linkPics" />
