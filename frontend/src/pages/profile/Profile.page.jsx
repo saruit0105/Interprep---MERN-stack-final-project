@@ -43,13 +43,13 @@ class Profile extends Component {
     });
   };
 
-  updateUser = e => {
+  updateUser = (e, l) => {
     e.preventDefault();
     console.log(this.state);
     const { currentUser } = this.context;
     let { gitInput, linkInput } = this.state;
-    currentUser.linkedin = linkInput;
-    currentUser.github = gitInput;
+    if (l) currentUser.linkedin = linkInput;
+    else currentUser.github = gitInput;
     this.handleUpdate(currentUser);
   };
 
@@ -89,7 +89,7 @@ class Profile extends Component {
                     userLinkedin={linkedin}
                   />
                   <button onClick={this.handleLinkEditing}>
-                    {linkEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
+                    {linkEditing ? <button onClick={e => this.updateUser(e, "l")}>Save</button> : "edit"}
                   </button>
                 </div>
               </li>
@@ -105,7 +105,7 @@ class Profile extends Component {
                     userGithub={github}
                   />
                   <button onClick={this.handleGitEditing}>
-                    {gitEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
+                    {gitEditing ? <button onClick={e => this.updateUser(e, gitInput)}>Save</button> : "edit"}
                   </button>
                 </div>
               </li>

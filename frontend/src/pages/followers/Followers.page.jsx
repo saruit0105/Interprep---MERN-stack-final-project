@@ -1,7 +1,6 @@
 import React from "react";
 import { UserContext } from "../../context/UserContext";
 import "./Followers.page.css";
-import classNames from "classnames";
 import Table from "react-bootstrap/Table";
 
 const Followers = () => <UserContext.Consumer>{context => <Component context={context} />}</UserContext.Consumer>;

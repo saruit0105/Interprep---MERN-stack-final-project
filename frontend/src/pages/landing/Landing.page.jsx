@@ -62,6 +62,7 @@ class Landing extends Component {
   static contextType = UserContext;
   render() {
     const { currentUser } = this.context;
+    console.log(currentUser);
     return (
       <div>
         <header className="masthead bg-primary text-white text-center">
