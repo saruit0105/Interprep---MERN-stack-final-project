@@ -6,10 +6,11 @@ import "./App.css";
 
 const App = () => (
   <div>
-    <NavBar />
+    <NavBar/>
     <Switch>
       <Route path="/about" component={About} />
       <Route exact path="/" component={Home} />
+      <Route exact path="/test" component={Test} />
       <AuthRoute exact path="/quiz/:category?/:subcategory?/:difficulty?" component={Quiz} />
       <AuthRoute exact path="/landing" component={Landing} />
       <AuthRoute path="/profile" component={Profile} />

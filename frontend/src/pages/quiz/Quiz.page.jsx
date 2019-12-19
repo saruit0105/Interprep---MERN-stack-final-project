@@ -44,7 +44,7 @@ class Quiz extends Component {
   };
 
   handleAnswer = e => {
-    !this.state.submited && this.setState({ currentAnswer: e.target.value, answerPicked: !this.state.answerPicked });
+    !this.state.submited && this.setState({ currentAnswer: e.target.value, answerPicked: true});
   };
 
   handleSubmit = e => {
@@ -156,10 +156,11 @@ class Quiz extends Component {
   };
 
   render() {
-    const { questions, currentQuestionIndex, currentAnswer } = this.state;
+    const { questions, currentQuestionIndex, currentAnswer,difficulty } = this.state;
     const { question, answers } = questions[currentQuestionIndex] || {};
     return (
       <div className="body">
+        <p>Difficulty : {difficulty.toUpperCase()}</p>
         <p>
           Question {this.state.counter} out of {this.state.questions.length}
         </p>
