@@ -15,7 +15,8 @@ export default class ShortAnswers extends Component {
     this.fetchQuestions();
   }
 
-  showAnswer = () => {
+  showAnswer = (e) => {
+    e.preventDefault()
     document.getElementById("banana").style.display = "block";
     console.log("pressed");
   };
@@ -29,24 +30,26 @@ export default class ShortAnswers extends Component {
     const { userAnswer, questions, currentQuestionIndex } = this.state;
     const { question, answer } = questions[currentQuestionIndex] || {};
     return (
-      <div>
-        <p> Question 1 out of {questions.length} </p>
+      <div className="body">
+      <p> Question 1 out of {questions.length} </p>
 
-        <div className="questionBox">
-          <Form className="form">
-            <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Label>{question}</Form.Label>
-              <Form.Control as="textarea" rows="3" />
-            </Form.Group>
-          </Form>
-          <div>
-            <button onClick={this.showAnswer}>submit</button>
-          </div>
-          <div id="banana" style={{ display: "none" }}>
-            {answer}
-          </div>
+      <div className="questionBox">
+        <Form className="form">
+          <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Label>{question}</Form.Label>
+            <Form.Control as="textarea" rows="3" />
+          </Form.Group>
+          <button onClick={this.showAnswer}>submit</button>
+        </Form>
+        
+          <div></div>
+        
+        <div id="banana" style={{ display: "none" }}>
+          Hellooo
+          {answer} 
         </div>
       </div>
+    </div>
     );
   }
 }
