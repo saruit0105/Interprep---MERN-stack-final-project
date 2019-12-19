@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import Form from "react-bootstrap/Form";
-import { withRouter, Link } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
+
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../../config";
 import "./ShortAnswers.page.css";
+import PEN_BADGE from "../../images/ShortBadge.png";
 
 export default class ShortAnswers extends Component {
+  static contextType = UserContext;
   state = {
     userAnswer: "",
     questions: [],
@@ -66,8 +69,17 @@ export default class ShortAnswers extends Component {
   };
 
   handleFinalClick = () => {
-    alert("Good job! We hope this helped prepare you for an interview");
+    const { currentUser } = this.context;
+    let { badges } = currentUser;
+    badges = PEN_BADGE;
+    currentUser.badges = [...currentUser.badges, badges];
+    this.handleUpdate(currentUser);
+    alert("Good job! We hope this helped prepare you for an interview, have a badge for your hard work :)");
     this.setState({ done: !this.state.done });
+  };
+
+  handleUpdate = async updatedData => {
+    await axios.post(`${baseURL}/api/update`, updatedData, { withCredentials: true });
   };
 
   render() {
@@ -77,15 +89,14 @@ export default class ShortAnswers extends Component {
       <div className="body">
         <div>
           <p>
-            Question {counter} out of {questions.length}{" "}
+            Question {counter} out of {questions.length}
           </p>
-
           <div className="questionBox">
-            <Form.Label>{question}</Form.Label>
+            <h3>{question}</h3>
+            <form className="form">
+              <input type="text" onChange={this.handleFormInput} value={userAnswer} />
+            </form>
             <div>
-              <Form>
-                <input type="text" onChange={this.handleFormInput} />
-              </Form>
               <button onClick={this.handleAnswerSubmit}>submit</button>
               {this.finalQuestion()}
             </div>

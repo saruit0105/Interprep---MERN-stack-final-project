@@ -4,7 +4,7 @@ import "./Landing.page.css";
 import FISH_LOGO from "../../images/fish.png";
 import JAVASCRIPT_LOGO from "../../images/js.png";
 import REACT_LOGO from "../../images/react-logo.png";
-import CSS_LOGO from "../../images/css-logo.png";
+import PEN from "../../images/short.png";
 import { UserContext } from "../../context/UserContext";
 import Button from "react-bootstrap/Button";
 
@@ -35,7 +35,7 @@ const links = [
         links: "shortanswers"
       }
     ],
-    picture: CSS_LOGO
+    picture: PEN
   },
   {
     label: "React",
