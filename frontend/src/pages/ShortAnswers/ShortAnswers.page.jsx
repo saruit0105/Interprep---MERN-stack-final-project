@@ -75,7 +75,7 @@ export default class ShortAnswers extends Component {
             Question {counter} out of {questions.length}{" "}
           </p>
 
-          <div className="questionBox">
+        <div className="questionBox" style={{cursor: "context-menu"}}>
             <Form className="form">
               <Form.Group controlId="exampleForm.ControlTextarea1">
                 <Form.Label>{question}</Form.Label>
