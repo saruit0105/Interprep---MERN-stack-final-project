@@ -28,7 +28,7 @@
 }
 .picButton:hover,
 .picButton:focus {
-  background: #0053ba;
+  background: #acb6c2;
 }
 .picButton:focus {
   outline: 1px solid #fff;

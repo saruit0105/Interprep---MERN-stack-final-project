@@ -6,6 +6,7 @@ import JAVASCRIPT_LOGO from "../../images/js.png";
 import REACT_LOGO from "../../images/react-logo.png";
 import CSS_LOGO from "../../images/css-logo.png";
 import { UserContext } from "../../context/UserContext";
+import Button from 'react-bootstrap/Button'
 
 const links = [
   {
@@ -111,9 +112,13 @@ class Landing extends Component {
                       <h3 className="labels">{label}</h3>
                       <img className="img-fluid" src={picture} alt="" />
                       {category.map(({ links, difficulty }) => (
+                        
+                        <Button variant="outline-success">
                         <Link to={`/quiz/${links}`} key={links}>
+                          
                           {difficulty}
                         </Link>
+                        </Button>
                       ))}
                     </button>
                   </div>
