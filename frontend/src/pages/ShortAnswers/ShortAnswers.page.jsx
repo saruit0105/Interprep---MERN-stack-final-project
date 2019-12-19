@@ -69,23 +69,25 @@ export default class ShortAnswers extends Component {
     const { userAnswer, questions, currentQuestionIndex, counter } = this.state;
     const { question, answer } = questions[currentQuestionIndex] || {};
     return (
-      <div>
-        <p>
-          Question {counter} out of {questions.length}{" "}
-        </p>
+      <div className="body">
+        <div>
+          <p>
+            Question {counter} out of {questions.length}{" "}
+          </p>
 
-        <div className="questionBox">
-          <Form className="form">
-            <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Label>{question}</Form.Label>
-              <Form.Control as="textarea" rows="3" />
-            </Form.Group>
-          </Form>
-          <div>
-            <button onClick={this.handleAnswerSubmit}>submit</button>
-            {this.finalQuestion()}
+          <div className="questionBox">
+            <Form className="form">
+              <Form.Group controlId="exampleForm.ControlTextarea1">
+                <Form.Label>{question}</Form.Label>
+                <Form.Control as="textarea" rows="3" />
+              </Form.Group>
+            </Form>
+            <div>
+              <button onClick={this.handleAnswerSubmit}>submit</button>
+              {this.finalQuestion()}
+            </div>
+            {this.showAnswer()}
           </div>
-          {this.showAnswer()}
         </div>
       </div>
     );
