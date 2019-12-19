@@ -61,91 +61,11 @@ class Profile extends Component {
     console.log(this);
     const { currentUser } = this.context;
     const { gitEditing, linkEditing, linkInput, gitInput } = this.state;
-    const { name, email, linkedin, github } = currentUser;
+    const { name, linkedin, github } = currentUser;
     return (
-      // <div>
-      //   <div className="container emp-profile ">
-      //     <div className="col-md-6">
-      //       <div className="profile-head">
-      //         <h5>{currentUser.name}</h5>
-      //         <h6>Web Developer and Designer</h6>
-
-      //         <ul className="nav nav-tabs" id="myTab" role="tablist">
-      //           <li className="nav-item">
-      //             <a
-      //               className="nav-link active"
-      //               id="home-tab"
-      //               data-toggle="tab"
-      //               href="#home"
-      //               role="tab"
-      //               aria-controls="home"
-      //               aria-selected="true"
-      //             >
-      //               About
-      //             </a>
-      //           </li>
-      //         </ul>
-      //       </div>
-      //     </div>
-      //     <br></br>
-
-      //     <div className="col-md-8">
-      //       <div className="row">
-      //         <div className="col-md-6">
-      //           <label>Name</label>
-      //         </div>
-      //         <div className="col-md-6">
-      //           <p>{name}</p>
-      //         </div>
-      //       </div>
-      //       <div className="row">
-      //         <div className="col-md-6">
-      //           <label>Email</label>
-      //         </div>
-      //         <div className="col-md-6">
-      //           <p>{email}</p>
-      //         </div>
-      //       </div>
-      //       <div className="row">
-      //         <div className="col-md-6">
-      //           <label>Github</label>
-      //         </div>
-      //         <div className="col-md-6">
-      // <Github
-      //   gitEditing={gitEditing}
-      //   handleGitChange={this.handleGitChange}
-      //   gitInput={gitInput}
-      //   userGithub={github}
-      // />
-      // <button onClick={this.handleGitEditing}>
-      //   {gitEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
-      // </button>
-      //         </div>
-      //       </div>
-      //       <div className="row">
-      //         <div className="col-md-6">
-      //           <label>Linkedin</label>
-      //         </div>
-      //         <div className="col-md-6">
-      // <Linkedin
-      //   linkEditing={linkEditing}
-      //   handleLinkChange={this.handleLinkChange}
-      //   linkInput={linkInput}
-      //   userLinkedin={linkedin}
-      // />
-      // <button onClick={this.handleLinkEditing}>
-      //   {linkEditing ? <button onClick={this.updateUser}>Save</button> : "edit"}
-      // </button>
-      //         </div>
-      //       </div>
-      //     </div>
-      //     <div className="col-md-2"></div>
-      //   </div>
-      // </div>
-
       <div>
         <div className="dababy">
-          <aside class="profile-card ">
+          <aside className="profile-card ">
             <header>
               <a href="{linkedin}">
                 <img src={FISH_LOGO} alt="" />
@@ -156,7 +76,7 @@ class Profile extends Component {
               <h2>Web Developer</h2>
             </header>
 
-            <ul class="profile-social-links">
+            <ul className="profile-social-links">
               <li>
                 <a href={linkedin}>
                   <img src={LINKEDIN_LOGO} alt="" className="linkPics" />

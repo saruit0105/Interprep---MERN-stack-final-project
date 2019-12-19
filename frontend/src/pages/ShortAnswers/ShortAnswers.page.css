@@ -1,0 +1,12 @@
+.quiz-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.body {
+  background: #f1f3fa;
+}
+
+.quiz-question {
+  display: flex;
+}

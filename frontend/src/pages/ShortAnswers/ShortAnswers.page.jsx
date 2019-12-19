@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { baseURL } from "../../config";
+import "./ShortAnswers.page.css";
 
 export default class ShortAnswers extends Component {
   state = {
@@ -31,18 +32,15 @@ export default class ShortAnswers extends Component {
       <div>
         <p> Question 1 out of {questions.length} </p>
 
-        <strong>Short Answer Question</strong>
         <div className="questionBox">
-          <Form>
+          <Form className="form">
             <Form.Group controlId="exampleForm.ControlTextarea1">
               <Form.Label>{question}</Form.Label>
               <Form.Control as="textarea" rows="3" />
             </Form.Group>
           </Form>
           <div>
-            <button onClick={this.showAnswer} style={{ float: "right" }}>
-              submit
-            </button>
+            <button onClick={this.showAnswer}>submit</button>
           </div>
           <div id="banana" style={{ display: "none" }}>
             {answer}
