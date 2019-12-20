@@ -21,7 +21,7 @@ const Component = ({ context, history }) => {
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand onClick={() => history.push(homePath)}>
           <img alt="" src={IRON_HACK_LOGO} width="30" height="30" className="d-inline-block align-top" />
-          InterPrep
+          IronPrep
         </Navbar.Brand>
         <Nav className="mr-auto">
           <ul className="navList">
