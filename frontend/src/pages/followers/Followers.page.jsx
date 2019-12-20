@@ -29,7 +29,7 @@ const Component = ({ context }) => {
                   <strong>{name}</strong>
                 </td>
                 <td>{points || 0}</td>
-                <td>{badges && badges.map(eachBadge => <img src={eachBadge} className="badges" />)}</td>
+                <td>{badges && badges.map(eachBadge => <img src={eachBadge} alt="" className="badges" />)}</td>
                 <td>{github}</td>
                 <td>{linkedin}</td>
               </tr>

@@ -1,14 +1,18 @@
 import React from "react";
 import './About.page.css'
+import JOHNNY_PIC from '../../images/headshots.jpg'
+import SARUIT_PIC from '../../images/saruit-image.jpg'
 
 const team = [
   {
     name: "Saruit Suwunrut",
-    position: "Frontend/Backend"
+    position: "Lead Software Engineer",
+    picture : SARUIT_PIC
   },
   {
     name: "Johnny Nguyen",
-    position: "CSS extrodinaire"
+    position: "CSS & Debugger Legend",
+    picture: JOHNNY_PIC,
   }
 ];
 
@@ -21,13 +25,13 @@ const About = () => (
     </header>
     <div className="container">
     <div className="row">
-    {team.map(({ name, position }) => (
+    {team.map(({ name, position,picture }) => (
       
         
           <div className="col-xl-3 col-md-6 mb-4">
             <div className="card border-0 shadow">
               <img
-                src="https://scontent-mia3-2.xx.fbcdn.net/v/t1.0-9/13715996_1233989286613423_8001312183027240155_n.jpg?_nc_cat=103&_nc_ohc=9G61NLAtxnkAQnLSF5oe251zsNdBeMLwrcI2IIJTp77iynV8SBxoTGlfw&_nc_ht=scontent-mia3-2.xx&oh=c9ef2e13760572eec3f2e902c18ecfc9&oe=5E871565"
+                src={picture}
                 className="card-img-top"
                 alt="..."
               />

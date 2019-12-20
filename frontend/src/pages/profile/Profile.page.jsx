@@ -76,12 +76,13 @@ class Profile extends Component {
               <h2>Web Developer</h2>
             </header>
 
-            <ul className="profile-social-links">
-              <li>
+            <ul className="profile-social-links" style={{float:"right",}}>
+             
+                <li>
                 <a href={linkedin}>
                   <img src={LINKEDIN_LOGO} alt="" className="linkPics" />
                 </a>
-                <div>
+                <div >
                   <Linkedin
                     linkEditing={linkEditing}
                     handleLinkChange={this.handleLinkChange}
@@ -93,11 +94,13 @@ class Profile extends Component {
                   </button>
                 </div>
               </li>
+              
+              
               <li>
                 <a href={github}>
                   <img src={GITHUB_LOGO} alt="" className="linkPics" />
                 </a>
-                <div>
+                <div >
                   <Github
                     gitEditing={gitEditing}
                     handleGitChange={this.handleGitChange}
@@ -109,6 +112,7 @@ class Profile extends Component {
                   </button>
                 </div>
               </li>
+             
             </ul>
           </aside>
         </div>

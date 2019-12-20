@@ -52,7 +52,7 @@ export default class Home extends Component {
                     <h3 className="login-heading mb-4">Welcome back!</h3>
                     <FormComponent handleLogin={this.handleLogin} handleSignUp={this.handleSignUp} />
                     <div className="text-center">
-                      New to The Forge ?<button onClick={this.toggleForm}>{toggleLabel}</button>
+                      <button onClick={this.toggleForm}>{toggleLabel}</button>
                     </div>
                   </div>
                 </div>

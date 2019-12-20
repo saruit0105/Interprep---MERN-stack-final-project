@@ -61,9 +61,18 @@ class Ranking extends Component {
                     {!isCurrentUser && !alreadyFollowing && <button onClick={this.follow(_id)}>Follow!</button>}
                     {!isCurrentUser && alreadyFollowing && <button disabled>Following</button>}
                   </td>
-                  <td>{badges && badges.map(eachBadge => <img src={eachBadge} className="badges" />)}</td>
-                  <td>{github}</td>
-                  <td>{linkedin}</td>
+                  <td>{badges && badges.map(eachBadge => <img src={eachBadge} alt="" className="badges" />)}</td>
+                  <td>
+                    <a href={github} target="_blank" rel="noopener noreferrer">
+                    {github}
+                    </a>
+                  </td>
+                  <td href={linkedin}>
+                    
+                  <a href={linkedin} target="_blank" rel="noopener noreferrer">
+                  {linkedin}
+                    </a>
+                    </td>
                 </tr>
               );
             })}
