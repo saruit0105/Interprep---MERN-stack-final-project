@@ -6,3 +6,4 @@ export { default as Quiz } from "./quiz/Quiz.page";
 export { default as Ranking } from "./ranking/Ranking.page";
 export { default as Followers } from "./followers/Followers.page";
 export { default as ShortAnswers } from "./ShortAnswers/ShortAnswers.page";
+export { default as Test } from "./test/Test-page";

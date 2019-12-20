@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Home, Profile, About, Landing, Quiz, Ranking, Followers, ShortAnswers } from "./pages";
+import { Home, Profile, About, Landing, Quiz, Ranking, Followers, ShortAnswers,Test } from "./pages";
 import { NavBar, AuthRoute } from "./components";
 import "./App.css";
 
@@ -9,6 +9,7 @@ const App = () => (
     <NavBar />
     <Switch>
       <Route path="/about" component={About} />
+      <Route path="/test" component={Test} />
       <Route exact path="/" component={Home} />
       <AuthRoute exact path="/quiz/shortanswers" component={ShortAnswers} />
       <AuthRoute exact path="/quiz/:category?/:subcategory?/:difficulty?" component={Quiz} />
